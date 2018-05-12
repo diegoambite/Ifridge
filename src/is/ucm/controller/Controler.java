@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import is.ucm.model.Model;
 import is.ucm.util.userdao.UserDaoImpl;
+import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class Controler {
 
@@ -28,6 +29,10 @@ public class Controler {
 		} catch (IOException e) {
 			//TODO send message of error to the user
 		}
+	}
+	
+	public boolean logInUser(String username, String password) throws IOException, UserNotFoundException {
+		return userdao.getUser(username).get_password().equals(password);
 	}
 
 }

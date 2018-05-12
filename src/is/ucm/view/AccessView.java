@@ -7,16 +7,19 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import is.ucm.controller.Controler;
 import is.ucm.model.Model;
+import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 
 
@@ -29,6 +32,7 @@ public class AccessView extends JFrame implements ActionListener {
 	 private JTextField tf1;
 	 private JButton btn1, btn2;
 	 private JPasswordField p1;
+	 private JPanel _mainPanel;
 	 
 	public AccessView(Controler ctr) {
 		super("Register");
@@ -38,8 +42,8 @@ public class AccessView extends JFrame implements ActionListener {
 
 	private void initGUI() {
 
-		JPanel mainPanel = new JPanel(new GridLayout(6, 1));
-		this.setContentPane(mainPanel);
+		_mainPanel = new JPanel(new GridLayout(6, 1));
+		this.setContentPane(_mainPanel);
 		
 		  l1 = new JLabel("Username");
 	      l2 = new JLabel("Password");
@@ -92,7 +96,20 @@ public class AccessView extends JFrame implements ActionListener {
 			
 		}
 		else if ("REGISTER".equals(e.getActionCommand())) {
-			this._ctr.registerUser(tf1.getText(), p1.getText());
+			this._ctr.registerUser(tf1.getText(), new String(p1.getPassword()));
+		}
+		else if ("LOGIN".equals(e.getActionCommand())) {
+			try {
+				if (_ctr.logInUser(tf1.getText(), new String(p1.getPassword()))) {
+					JOptionPane.showMessageDialog(_mainPanel, "Succesfull Log in", "Nice job mate", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(_mainPanel, "Woops... Wrong password", "Error Brooo", JOptionPane.ERROR_MESSAGE);
+
+				}
+			} catch (IOException | UserNotFoundException e1) {
+				JOptionPane.showMessageDialog(_mainPanel, e1.getMessage(), "Error maaaan", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
 	}

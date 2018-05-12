@@ -10,6 +10,7 @@ import java.util.List;
 import is.ucm.model.User;
 import is.ucm.util.ini.Ini;
 import is.ucm.util.ini.IniSection;
+import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class UserDaoImpl implements UserDao {
 
@@ -17,17 +18,36 @@ public class UserDaoImpl implements UserDao {
 	public static final String USER_SECTION = "user";
 	private File f;
 	
+	public UserDaoImpl() {
+		f = new File(FILESYSTEM);
+		f.getParentFile().mkdirs(); 
+		try {
+			f.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private Ini getIniFile() throws IOException {
+		FileInputStream input = new FileInputStream(f);
+		Ini ini = new Ini(input);
+		return ini;
+	}
+	
 	@Override
-	public User getUser(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUser(String username) throws IOException, UserNotFoundException {
+		Ini ini = getIniFile();
+		for (IniSection section : ini.getSections()) {
+			if (section.getValue("username").equals(username)) {
+				return new User(username, section.getValue("password"));
+			}
+		}
+		throw new UserNotFoundException("The user " + username + " could not be found in the filesystem");
 	}
 
 	@Override
 	public void setNewUser(String username, String password) throws IOException {
-		f = new File(FILESYSTEM);
-		f.getParentFile().mkdirs(); 
-		f.createNewFile();
+		
 		if (this.isUser(username)) {
 			this.updateUser(username, password);
 			return;
@@ -36,14 +56,10 @@ public class UserDaoImpl implements UserDao {
 		user.setValue("username", username);
 		user.setValue("password", password);
 		
-		FileInputStream input = new FileInputStream(f);
-		Ini ini = new Ini(input);
+		Ini ini = getIniFile();
 		ini.addsection(user);
 		FileOutputStream s = new FileOutputStream(f);
 		ini.store(s);
-		
-		
-		
 		
 	}
 
@@ -54,20 +70,29 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void updateUser(String username, String password) {
-		// TODO Auto-generated method stub
+	public void updateUser(String username, String password) throws IOException {
+		Ini ini  = this.getIniFile();
+		for (IniSection section : ini.getSections()) {
+			if (section.getValue("username").equals(username)) {
+				section.setValue("password", password);
+			}
+		}
 		
 	}
 
 	@Override
 	public void deleteUser(String username) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean isUser(String username) {
-		// TODO Auto-generated method stub
+	public boolean isUser(String username) throws IOException {
+		Ini ini  = this.getIniFile();
+		for (IniSection section : ini.getSections()) {
+			if (section.getValue("username").equals(username)) {
+				return true;
+			}
+		}
 		return false;
 	}
 

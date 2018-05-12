@@ -6,6 +6,11 @@ public class User {
 	private int _id;
 	private String _password;
 	
+	public User(String name, String password) {
+		_name = name;
+		_password = password;
+	}
+	
 	public String get_name() {
 		return _name;
 	}
