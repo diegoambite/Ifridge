@@ -70,7 +70,6 @@ public class AccessView extends JFrame implements ActionListener {
 	      btn2.setBounds(150, 170, 100, 30);
 	       
 	      this.add(l1);
-	     
 	      
 	      this.add(tf1);
 	      
