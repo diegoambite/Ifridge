@@ -22,7 +22,7 @@ import is.ucm.model.Model;
 
 @SuppressWarnings("serial")
 public class AccessView extends JFrame implements ActionListener {
-
+	
 	private Controler _ctr;
 	
 	 private JLabel l1, l2;
@@ -90,6 +90,9 @@ public class AccessView extends JFrame implements ActionListener {
 		if ("SEND".equals(e.getActionCommand())){
 			this.setVisible(false);
 			
+		}
+		else if ("REGISTER".equals(e.getActionCommand())) {
+			this._ctr.registerUser(tf1.getText(), p1.getText());
 		}
 		
 	}
