@@ -1,7 +1,16 @@
 package is.ucm.model;
 
 public class Category {
-	public enum Demarcacion {
-	   VEGETABLE, MEAT, FISH, FRUIT, DRINK, FROZEN, 
+	
+	public Type _myType;
+	
+	public enum Type {
+	   VEGETABLE, MEAT, FISH, FRUIT, DRINK, FROZEN, DESSERT
 	}
+	
+	public Type getCategory() {
+		return _myType;
+	}
+	
+	
 }
