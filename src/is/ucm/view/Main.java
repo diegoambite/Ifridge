@@ -1,6 +1,9 @@
-package is.ucm.swing;
+package is.ucm.view;
 
 import javax.swing.SwingUtilities;
+
+import is.ucm.controller.Controler;
+import is.ucm.model.Model;
 
 public class Main {
 
@@ -11,7 +14,7 @@ public class Main {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new AccessView(m, ctr);
+				new AccessView(ctr);
 			}
 		});
 	}

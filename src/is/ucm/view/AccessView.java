@@ -1,7 +1,9 @@
-package is.ucm.swing;
+package is.ucm.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +15,14 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import is.ucm.controller.Controler;
+import is.ucm.model.Model;
+
+
 
 @SuppressWarnings("serial")
 public class AccessView extends JFrame implements ActionListener {
 
-	private Model _model;
 	private Controler _ctr;
 	
 	 private JLabel l1, l2;
@@ -25,16 +30,15 @@ public class AccessView extends JFrame implements ActionListener {
 	 private JButton btn1, btn2;
 	 private JPasswordField p1;
 	 
-	public AccessView(Model model, Controler ctr) {
+	public AccessView(Controler ctr) {
 		super("Register");
-		_model = model;
 		_ctr = ctr;
 		initGUI();
 	}
 
 	private void initGUI() {
 
-		JPanel mainPanel = new JPanel(new BorderLayout());
+		JPanel mainPanel = new JPanel(new GridLayout(6, 1));
 		this.setContentPane(mainPanel);
 		
 		  l1 = new JLabel("Username");
@@ -62,21 +66,21 @@ public class AccessView extends JFrame implements ActionListener {
 	      btn2.setBounds(150, 170, 100, 30);
 	       
 	      this.add(l1);
-	      this.add(l2);
+	     
 	      
 	      this.add(tf1);
+	      
+	      this.add(l2);
 	      this.add(p1);
 	      
 	      this.add(btn1);
 	      this.add(btn2);
 	      
 	      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	      int height = (int) (screenSize.height * 0.30);
-	      int width = (int) (screenSize.width * 0.35);
+	      int height = (int) (screenSize.height * 0.60);
+	      int width = (int) (screenSize.width * 0.20);
 	      setPreferredSize(new Dimension(width, height));
-		
-	      this.setSize(1000, 1000);
-	      this.setLayout(null);
+	      
 	      this.pack();
 	      this.setVisible(true);
 	}

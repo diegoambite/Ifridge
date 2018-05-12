@@ -1,4 +1,6 @@
-package is.ucm.swing;
+package is.ucm.controller;
+
+import is.ucm.model.Model;
 
 public class Controler {
 

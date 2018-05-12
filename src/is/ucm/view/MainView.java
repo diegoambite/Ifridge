@@ -1,4 +1,4 @@
-package is.ucm.swing;
+package is.ucm.view;
 
 import javax.swing.JFrame;
 

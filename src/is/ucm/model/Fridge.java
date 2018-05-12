@@ -1,4 +1,4 @@
-package is.ucm.swing;
+package is.ucm.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package is.ucm.swing;
+package is.ucm.model;
 
 public class Product {
 
