@@ -1,4 +1,4 @@
-package swing;
+package is.ucm.swing;
 
 import java.io.*;
 
