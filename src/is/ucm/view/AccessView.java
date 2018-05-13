@@ -115,7 +115,7 @@ public class AccessView extends JFrame implements ActionListener {
 
 				}
 			} catch (IOException | UserNotFoundException e1) {
-				JOptionPane.showMessageDialog(_mainPanel, e1.getMessage(), "Error maaaan", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(_mainPanel, "Error maaaan", e1.getMessage(), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		

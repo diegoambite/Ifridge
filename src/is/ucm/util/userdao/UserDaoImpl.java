@@ -56,7 +56,7 @@ public class UserDaoImpl implements UserDao {
 		}
 		IniSection user = new IniSection(USER_SECTION);
 		user.setValue("username", username);
-		user.setValue("password", password);
+		user.setValue("password", password.generate());
 		
 		Ini ini = getIniFile();
 		ini.addsection(user);
