@@ -61,9 +61,9 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 		mainPanel.add(_fridge);
 		_fridge.setVisible(true);
 		
-		//_tobuy = new ToBuyTableView();
-		//mainPanel.add(_tobuy);
-		//_tobuy.setVisible(false);	
+		_tobuy = new ToBuyTableView();
+		mainPanel.add(_tobuy);
+		_tobuy.setVisible(true);	
 	}
 
 

@@ -1,13 +1,18 @@
 package is.ucm.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
@@ -15,19 +20,16 @@ import is.ucm.model.FridgeSimulatorObserver;
 import is.ucm.model.ListsObserver;
 import is.ucm.model.Product;
 
-public class ToBuyTableView extends JPanel implements ListsObserver{
-	
-	private List<ListsObserver> _obs;
-	
-	class ToBuyTableModel extends AbstractTableModel{
-
-		private final String[] header = {"Name", "Quantity"};
+public class ToBuyTableView extends JPanel implements ListsObserver {
 		
-		
+	public static Border defaultBorder = BorderFactory.createLineBorder(Color.black, 2);
 
-		@Override
+	class ToBuyTableModel extends AbstractTableModel {
+
+		private final String[] header = {"Name", "Quantity", "Edit", "Delete"};
+		
 		public String getColumnName(int pos) {
-			return header[pos];
+			return header[pos];	
 		}
 		
 		@Override
@@ -37,28 +39,77 @@ public class ToBuyTableView extends JPanel implements ListsObserver{
 
 		@Override
 		public int getRowCount() {
-			// TODO Auto-generated method stub
-			return 0;
+			if (_map == null) return 0;
+			return _map.size();
 		}
 
 		@Override
-		public Object getValueAt(int arg0, int arg1) {
-			// TODO Auto-generated method stub
-			return null;
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			switch(columnIndex) {
+				case 0:	return _map.get(rowIndex).get_name();
+				case 1:	return _map.get(rowIndex).get_quantity();
+				case 2: return new JButton("Edit");
+				case 3: return new JButton("Delete");
+				default: return null;
+			}
+		}
+		
+		void refresh() {
+			fireTableDataChanged();
 		}
 		
 	}
 	
-	public ToBuyTableView(String bordeId, TableModel<T> modelo){
-		this.setLayout(new GridLayout(1,1));
-		this.setBorder(BorderFactory.createTitledBorder(bordeId));
-		this.model = modelo;
-		JTable tabla = new JTable(this.model);
-		JScrollPane scroll = new JScrollPane(tabla);
+	
+	private List<Product> _map;
+	private ToBuyTableModel _roadsModel;
+	private JTable _t;
+
+	public ToBuyTableView(){
+		_map = null;
+		initGUI();
 		
-		scroll.getViewport().setBackground(Color.WHITE);
-		this.add(scroll);
 	}
 	
+	private void initGUI() {
+		this.setBorder(new TitledBorder(defaultBorder, "Vehicles"));
+		this.setLayout(new BorderLayout());
+		_roadsModel = new ToBuyTableModel();
+		
+		_t = new JTable(_roadsModel);
+		_t.setShowGrid(false);
+		JScrollPane s = new JScrollPane(_t);
+		s.getViewport().setBackground(Color.WHITE);
+		this.add(s, BorderLayout.CENTER); //check
+		this.setVisible(true);
+	}
 	
+	public List<Product> getSelected() {
+		int[] data =  _t.getSelectedRows();
+		List<Product> l = new ArrayList<Product>();
+		for (int i = 0; i < data.length; i++) {
+			l.add(_map.get(data[i]));
+		}
+		
+		return l;
+		
+	}
+
+	@Override
+	public void onRemove(List<Product> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onAdd(List<Product> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEdit(Product p) {
+		// TODO Auto-generated method stub
+		
+	}
 }
