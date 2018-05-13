@@ -34,9 +34,7 @@ public class MainView extends JFrame{
 	public void initGUI() {
 		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
-		//this.addWindowListener(new WindowListener() {//when exit ask for confirmation
-		
+				
 		JPanel mainPanel = this.createMainPanel();
 		this.setContentPane(mainPanel);
 	
@@ -44,7 +42,6 @@ public class MainView extends JFrame{
 		
 		this.addList(mainPanel);
 		
-	
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) (screenSize.height * 0.60);
 		int width = (int) (screenSize.width * 0.20);
@@ -59,12 +56,16 @@ public class MainView extends JFrame{
 	private void addList(JPanel mainPanel) {
 		_fridge = new FridgeTableView();
 		mainPanel.add(_fridge);
+		_fridge.setVisible(true);
 		
+		_tobuy = new ToBuyTableView();
+		mainPanel.add(_tobuy);
+		_tobuy.setVisible(false);	
 	}
 
 
 	private void addToolBar(JPanel mainPanel) {
-		_toolbar = new Toolbar();//habra que meterle argumentos
+		_toolbar = new Toolbar(_fridge, _tobuy);
 		mainPanel.add(_toolbar, BorderLayout.PAGE_START);
 		
 	}
