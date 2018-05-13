@@ -83,5 +83,12 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 	public void onRemove(Product p) {
 		System.out.println(p);
 	}
+
+
+	@Override
+	public void onAdd(Product p) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

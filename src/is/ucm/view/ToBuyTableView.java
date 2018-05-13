@@ -2,14 +2,52 @@ package is.ucm.view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class ToBuyTableView extends JPanel{
+import is.ucm.model.FridgeSimulatorObserver;
+import is.ucm.model.ListsObserver;
+import is.ucm.model.Product;
+
+public class ToBuyTableView extends JPanel implements ListsObserver{
+	
+	private List<ListsObserver> _obs;
+	
+	class ToBuyTableModel extends AbstractTableModel{
+
+		private final String[] header = {"Name", "Quantity"};
+		
+		
+
+		@Override
+		public String getColumnName(int pos) {
+			return header[pos];
+		}
+		
+		@Override
+		public int getColumnCount() {
+			return header.length;
+		}
+
+		@Override
+		public int getRowCount() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public Object getValueAt(int arg0, int arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
 	
 	public ToBuyTableView(String bordeId, TableModel<T> modelo){
 		this.setLayout(new GridLayout(1,1));
@@ -20,5 +58,25 @@ public class ToBuyTableView extends JPanel{
 		
 		scroll.getViewport().setBackground(Color.WHITE);
 		this.add(scroll);
+	}
+	
+	
+
+	@Override
+	public void onRemove(Product p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onAdd(Product p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEdit(Product p) {
+		// TODO Auto-generated method stub
+		
 	}
 }
