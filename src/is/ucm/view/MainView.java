@@ -13,8 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import is.ucm.controller.Controler;
+import is.ucm.model.FridgeSimulatorObserver;
+import is.ucm.model.Product;
 
-public class MainView extends JFrame{
+public class MainView extends JFrame implements FridgeSimulatorObserver {
 	
 	private Toolbar _toolbar;
 	
@@ -72,6 +74,12 @@ public class MainView extends JFrame{
 
 	private JPanel createMainPanel() {
 		return new JPanel( new BorderLayout() );
+	}
+
+
+	@Override
+	public void onRemove(Product p) {
+		
 	}
 	
 }
