@@ -96,7 +96,7 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 
 	@Override
 	public void onRemove(List<Product> list, Category c) {
-		if (c.getName().equals(_c.getName()))) {
+		if (c.getName().equals(_c.getName())) {
 			_map = list;
 			_roadsModel.refresh();
 		}
@@ -105,7 +105,7 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 
 	@Override
 	public void onAdd(List<Product> list, Category c) {
-		if (c.getName().equals(_c.getName()))) {
+		if (c.getName().equals(_c.getName())) {
 			_map = list;
 			_roadsModel.refresh();
 		}
