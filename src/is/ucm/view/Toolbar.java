@@ -19,11 +19,11 @@ public class Toolbar extends JToolBar implements ActionListener{
 	private JButton _fridgeView, _buyView, _close;
 	private FridgeTableView _fridge;
 	private ToBuyTableView _tobuy;
+	private MainView _main;
 
-	public Toolbar(FridgeTableView fridge, ToBuyTableView tobuy){//habra que meterle el controler
+	public Toolbar(MainView main){//habra que meterle el controler
 		super();	
-		_fridge = fridge;
-		_tobuy  = tobuy;
+		_main = main;
 		//crtl.addObserver(this);
 		this.addSeparator();
 
@@ -66,9 +66,7 @@ public class Toolbar extends JToolBar implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if ("FRIDGE".equals(e.getActionCommand())){
-			_tobuy.setVisible(false);
-			_fridge.setVisible(true);
-			
+			_main.setView("FRIDGE");
 		}
 		else if ("BUY".equals(e.getActionCommand())) {
 			_fridge.setVisible(false);

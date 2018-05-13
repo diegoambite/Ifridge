@@ -10,6 +10,10 @@ public class Fridge extends FoodContainer implements Observable<ListsObserver>, 
 
 	private List<ListsObserver> _obs;
 	
+	public Fridge() {
+		_obs = new ArrayList<ListsObserver>();
+	}
+	
 	public void editAmount(Product pro, int amount) {
 		_foodList.get(pro.get_category()).get(getIndex(pro)).set_quantity(amount);
 	}

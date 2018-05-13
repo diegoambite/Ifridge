@@ -22,7 +22,7 @@ import is.ucm.view.ToBuyTableView.ToBuyTableModel;
 public class FridgeTableView extends JPanel implements ListsObserver {
 	public static Border defaultBorder = BorderFactory.createLineBorder(Color.black, 2);
 
-	class ToBuyTableModel extends AbstractTableModel {
+	class FridgeTableModel extends AbstractTableModel {
 
 		private final String[] header = {"Name", "Quantity", "Buy"};
 		
@@ -59,7 +59,7 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 	
 	
 	private List<Product> _map;
-	private ToBuyTableModel _roadsModel;
+	private FridgeTableModel _roadsModel;
 	private JTable _t;
 	private Category _c;
 
@@ -73,7 +73,7 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 	private void initGUI() {
 		this.setBorder(new TitledBorder(defaultBorder, _c.getName()));
 		this.setLayout(new BorderLayout());
-		_roadsModel = new ToBuyTableModel();
+		_roadsModel = new FridgeTableModel();
 		
 		_t = new JTable(_roadsModel);
 		_t.setShowGrid(false);

@@ -17,13 +17,15 @@ import is.ucm.model.FridgeSimulatorObserver;
 import is.ucm.model.Product;
 import is.ucm.model.categories.Category;
 import is.ucm.model.categories.InvokerCategories;
+import is.ucm.model.categories.Meat;
 
-public class MainView extends JFrame implements FridgeSimulatorObserver {
+public class MainView extends JFrame {
 	
 	private Toolbar _toolbar;
 	
 	private FridgeTableView _fridge;
 	private ToBuyTableView _tobuy;
+	private FridgeView _fridgeView;
 	
 	private Controler _controller;
 	
@@ -42,9 +44,9 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 		JPanel mainPanel = this.createMainPanel();
 		this.setContentPane(mainPanel);
 	
-		this.addToolBar(mainPanel);
+		//this.addToolBar(mainPanel);
 		
-		this.addList(mainPanel);
+		//this.addList(mainPanel);
 		
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -52,47 +54,40 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 		int width = (int) (screenSize.width * 0.20);
 		setPreferredSize(new Dimension(width, height));
       
+		
+		
 		this.pack();
-		this.setVisible(true);
+		this.setVisible(false);
 	
+	}
+	
+	public void setView(String s) {
+		switch(s) {
+		case "FRIDGE":
+			this.setContentPane(_fridgeView);
+		}
 	}
 
 	
 	private void addList(JPanel mainPanel) {
-		for (Category c : InvokerCategories.getCategories()) {
-			_fridge = new FridgeTableView(c);
-			mainPanel.add(_fridge);
-			_fridge.setVisible(true);
-		}
+		
+		
 		
 		_tobuy = new ToBuyTableView();
 		mainPanel.add(_tobuy);
-		_tobuy.setVisible(true);	
+		_tobuy.setVisible(false);
+		mainPanel.add(new FridgeTableView(new Meat()));
 	}
 
 
-	private void addToolBar(JPanel mainPanel) {
-		_toolbar = new Toolbar(_fridge, _tobuy);
-		mainPanel.add(_toolbar, BorderLayout.PAGE_START);
-		
-	}
+	
 
 
 	private JPanel createMainPanel() {
-		return new JPanel( new BorderLayout() );
+		_fridgeView = new FridgeView(this, _controller);
+		return _fridgeView;
 	}
 
 
-	@Override
-	public void onRemove(Product p) {
-		System.out.println(p);
-	}
 
-
-	@Override
-	public void onAdd(Product p) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

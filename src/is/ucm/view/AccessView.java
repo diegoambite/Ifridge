@@ -51,8 +51,8 @@ public class AccessView extends JFrame implements ActionListener {
 		  l1 = new JLabel("Username");
 	      l2 = new JLabel("Password");
 	     
-	      tf1 = new JTextField();
-	      p1 = new JPasswordField();
+	      tf1 = new JTextField("a");
+	      p1 = new JPasswordField("a");
 	     
 	      btn1 = new JButton("log in");
 	      btn2 = new JButton("register");
@@ -106,9 +106,10 @@ public class AccessView extends JFrame implements ActionListener {
 		else if ("LOGIN".equals(e.getActionCommand())) {
 			try {
 				if (_ctr.logInUser(tf1.getText(), new String(p1.getPassword()))) {
-					JOptionPane.showMessageDialog(_mainPanel, "Succesfull Log in", "Nice job mate", JOptionPane.INFORMATION_MESSAGE);
+					//JOptionPane.showMessageDialog(_mainPanel, "Succesfull Log in", "Nice job mate", JOptionPane.INFORMATION_MESSAGE);
 					this.setVisible(false);
-					
+					_mainView.setVisible(true);
+					_ctr.run();
 				}
 				else {
 					JOptionPane.showMessageDialog(_mainPanel, "Woops... Wrong password", "Error Brooo", JOptionPane.ERROR_MESSAGE);

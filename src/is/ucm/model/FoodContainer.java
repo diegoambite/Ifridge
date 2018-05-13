@@ -25,7 +25,18 @@ public class FoodContainer  {
 	}
 	
 	public void removeProduct(Product pro){
-		_foodList.get(pro.get_category()).remove(pro);
+		 
+		Product p = _foodList.get(pro.get_category()).get(getIndex(pro));
+		if (p.get_quantity() > 1) {
+			p.set_quantity(p.get_quantity() - 1);
+			_foodList.get(pro.get_category()).set(getIndex(pro), p);
+			return;
+		}
+		else {
+			_foodList.get(pro.get_category()).remove(getIndex(pro));
+		}
+		
+		
 	}
 	
 	public int getIndex(Product pro) {
@@ -46,7 +57,14 @@ public class FoodContainer  {
 			Category c = InvokerCategories.getCategories()[table];
 			int list = rand.nextInt(_foodList.get(c).size());
 			Product p = _foodList.get(c).get(list);
-			_foodList.get(c).remove(list);
+			if (p.get_quantity() > 1) {
+				p.set_quantity(p.get_quantity() - 1);
+				_foodList.get(c).set(list, p);
+				return p;
+			}
+			else {
+				_foodList.get(c).remove(list);
+			}
 			return p;
 		} catch(IllegalArgumentException e) {
 			return null;

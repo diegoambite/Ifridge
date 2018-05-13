@@ -23,11 +23,7 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 		_f = new FoodContainer();
 		_random = new Random();
 		_obs = new ArrayList<FridgeSimulatorObserver>();
-		for (IniSection section : _data.getSections()) {
-			Product p = getProductfromSection(section);
-			_f.addNewProduct(p);
-			NotifyAdd(p);
-		}
+		
 	}
 	
 	public Product getProductfromSection(IniSection section) {
@@ -46,6 +42,11 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 
 	@Override
 	public void run() {
+		for (IniSection section : _data.getSections()) {
+			Product p = getProductfromSection(section);
+			_f.addNewProduct(p);
+			NotifyAdd(p);
+		}
 		while(true) {
 			if(_random.nextInt(100) < 5)
 				NotifyRemove(_f.removeRandomProduct());
