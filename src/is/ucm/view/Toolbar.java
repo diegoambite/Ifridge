@@ -5,18 +5,25 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
+
+import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class Toolbar extends JToolBar implements ActionListener{
 	
 	private JButton _fridgeView, _buyView, _close;
+	private FridgeTableView _fridge;
+	private ToBuyTableView _tobuy;
 
-	public Toolbar(){//habra que meterle el controler
+	public Toolbar(FridgeTableView fridge, ToBuyTableView tobuy){//habra que meterle el controler
 		super();	
-
+		_fridge = fridge;
+		_tobuy  = tobuy;
 		//crtl.addObserver(this);
 		this.addSeparator();
 
@@ -58,6 +65,16 @@ public class Toolbar extends JToolBar implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-	}	
+		if ("FRIDGE".equals(e.getActionCommand())){
+			_tobuy.setVisible(false);
+			_fridge.setVisible(true);
+			
+		}
+		else if ("BUY".equals(e.getActionCommand())) {
+			_fridge.setVisible(false);
+			_tobuy.setVisible(true);
+		}
+	
+	}
+
 }
