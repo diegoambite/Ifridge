@@ -40,12 +40,17 @@ public class FoodContainer  {
 	}
 	
 	public Product removeRandomProduct() {
-		Random rand = new Random();
-		int table = rand.nextInt(_foodList.size());
-		int list = rand.nextInt(_foodList.get(table).size());
-		Product p = _foodList.get(table).get(list);
-		_foodList.get(table).remove(list);
-		return p;
+		try {
+			Random rand = new Random();
+			int table = rand.nextInt(_foodList.size());
+			Category c = InvokerCategories.getCategories()[table];
+			int list = rand.nextInt(_foodList.get(c).size());
+			Product p = _foodList.get(c).get(list);
+			_foodList.get(c).remove(list);
+			return p;
+		} catch(IllegalArgumentException e) {
+			return null;
+		}
 	}
 	
 }

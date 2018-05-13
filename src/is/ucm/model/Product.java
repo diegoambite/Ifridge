@@ -39,4 +39,9 @@ public class Product {
 		return _category.hashCode();
 		
 	}
+	
+	@Override
+	public String toString() {
+		return _name + ": " + _quantity;
+	}
 }

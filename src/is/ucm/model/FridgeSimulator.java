@@ -44,11 +44,11 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 
 	@Override
 	public void run() {
-		while(_random.nextInt() < 5) {
-			
-			NotifyRemove(_f.removeRandomProduct());
+		while(true) {
+			if(_random.nextInt(100) < 80)
+				NotifyRemove(_f.removeRandomProduct());
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 			}
 		}
