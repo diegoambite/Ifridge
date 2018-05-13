@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import is.ucm.controller.Controler;
 import is.ucm.model.FridgeSimulatorObserver;
 import is.ucm.model.Product;
+import is.ucm.model.categories.Category;
+import is.ucm.model.categories.InvokerCategories;
 
 public class MainView extends JFrame implements FridgeSimulatorObserver {
 	
@@ -57,9 +59,11 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 
 	
 	private void addList(JPanel mainPanel) {
-		_fridge = new FridgeTableView();
-		mainPanel.add(_fridge);
-		_fridge.setVisible(true);
+		for (Category c : InvokerCategories.getCategories()) {
+			_fridge = new FridgeTableView(c);
+			mainPanel.add(_fridge);
+			_fridge.setVisible(true);
+		}
 		
 		_tobuy = new ToBuyTableView();
 		mainPanel.add(_tobuy);

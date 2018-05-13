@@ -16,6 +16,7 @@ import javax.swing.table.AbstractTableModel;
 
 import is.ucm.model.ListsObserver;
 import is.ucm.model.Product;
+import is.ucm.model.categories.Category;
 import is.ucm.view.ToBuyTableView.ToBuyTableModel;
 
 public class FridgeTableView extends JPanel implements ListsObserver {
@@ -45,8 +46,7 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 			switch(columnIndex) {
 				case 0:	return _map.get(rowIndex).get_name();
 				case 1:	return _map.get(rowIndex).get_quantity();
-				case 2: return new JButton("Edit");
-				case 3: return new JButton("Delete");
+				case 2: return new JButton("hello");
 				default: return null;
 			}
 		}
@@ -61,15 +61,17 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 	private List<Product> _map;
 	private ToBuyTableModel _roadsModel;
 	private JTable _t;
+	private Category _c;
 
-	public FridgeTableView(){
+	public FridgeTableView(Category c){
 		_map = null;
+		_c = c;
 		initGUI();
 		
 	}
 	
 	private void initGUI() {
-		this.setBorder(new TitledBorder(defaultBorder, "Vehicles"));
+		this.setBorder(new TitledBorder(defaultBorder, _c.getName()));
 		this.setLayout(new BorderLayout());
 		_roadsModel = new ToBuyTableModel();
 		
@@ -93,20 +95,25 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 	}
 
 	@Override
-	public void onRemove(List<Product> list) {
-		// TODO Auto-generated method stub
+	public void onRemove(List<Product> list, Category c) {
+		if (c.getName().equals(_c.getName()))) {
+			_map = list;
+			_roadsModel.refresh();
+		}
 		
 	}
 
 	@Override
-	public void onAdd(List<Product> list) {
-		// TODO Auto-generated method stub
+	public void onAdd(List<Product> list, Category c) {
+		if (c.getName().equals(_c.getName()))) {
+			_map = list;
+			_roadsModel.refresh();
+		}
 		
 	}
 
 	@Override
 	public void onEdit(Product p) {
-		// TODO Auto-generated method stub
 		
 	}
 }

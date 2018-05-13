@@ -19,6 +19,7 @@ import javax.swing.table.TableModel;
 import is.ucm.model.FridgeSimulatorObserver;
 import is.ucm.model.ListsObserver;
 import is.ucm.model.Product;
+import is.ucm.model.categories.Category;
 
 public class ToBuyTableView extends JPanel implements ListsObserver {
 		
@@ -72,7 +73,7 @@ public class ToBuyTableView extends JPanel implements ListsObserver {
 	}
 	
 	private void initGUI() {
-		this.setBorder(new TitledBorder(defaultBorder, "Vehicles"));
+		this.setBorder(new TitledBorder(defaultBorder, "Shop List"));
 		this.setLayout(new BorderLayout());
 		_roadsModel = new ToBuyTableModel();
 		
@@ -96,13 +97,13 @@ public class ToBuyTableView extends JPanel implements ListsObserver {
 	}
 
 	@Override
-	public void onRemove(List<Product> list) {
+	public void onRemove(List<Product> list, Category c) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onAdd(List<Product> list) {
+	public void onAdd(List<Product> list, Category c) {
 		// TODO Auto-generated method stub
 		
 	}
