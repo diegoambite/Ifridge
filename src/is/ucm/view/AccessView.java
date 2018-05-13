@@ -34,9 +34,12 @@ public class AccessView extends JFrame implements ActionListener {
 	 private JPasswordField p1;
 	 private JPanel _mainPanel;
 	 
-	public AccessView(Controler ctr) {
+	 private JFrame _mainView;
+	 
+	public AccessView(Controler ctr, JFrame mainView) {
 		super("Register");
 		_ctr = ctr;
+		_mainView = mainView;
 		initGUI();
 	}
 
@@ -96,11 +99,16 @@ public class AccessView extends JFrame implements ActionListener {
 		}
 		else if ("REGISTER".equals(e.getActionCommand())) {
 			this._ctr.registerUser(tf1.getText(), new String(p1.getPassword()));
+			JOptionPane.showMessageDialog(_mainPanel, "Registered", "Your user is ready to use the Ifridge technology!", JOptionPane.INFORMATION_MESSAGE);
+			this.setVisible(false);
+			_mainView.setVisible(true);
 		}
 		else if ("LOGIN".equals(e.getActionCommand())) {
 			try {
 				if (_ctr.logInUser(tf1.getText(), new String(p1.getPassword()))) {
 					JOptionPane.showMessageDialog(_mainPanel, "Succesfull Log in", "Nice job mate", JOptionPane.INFORMATION_MESSAGE);
+					this.setVisible(false);
+					
 				}
 				else {
 					JOptionPane.showMessageDialog(_mainPanel, "Woops... Wrong password", "Error Brooo", JOptionPane.ERROR_MESSAGE);

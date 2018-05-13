@@ -71,8 +71,7 @@ public class MainView extends JFrame{
 
 
 	private JPanel createMainPanel() {
-		// TODO Auto-generated method stub
-		return null;
+		return new JPanel( new BorderLayout() );
 	}
 	
 }
