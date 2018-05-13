@@ -35,7 +35,7 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 	
 	public void initGUI() {
 		
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
 		JPanel mainPanel = this.createMainPanel();
 		this.setContentPane(mainPanel);
@@ -43,6 +43,7 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 		this.addToolBar(mainPanel);
 		
 		this.addList(mainPanel);
+		
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int) (screenSize.height * 0.60);
@@ -60,9 +61,9 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 		mainPanel.add(_fridge);
 		_fridge.setVisible(true);
 		
-		_tobuy = new ToBuyTableView();
-		mainPanel.add(_tobuy);
-		_tobuy.setVisible(false);	
+		//_tobuy = new ToBuyTableView();
+		//mainPanel.add(_tobuy);
+		//_tobuy.setVisible(false);	
 	}
 
 
@@ -80,7 +81,7 @@ public class MainView extends JFrame implements FridgeSimulatorObserver {
 
 	@Override
 	public void onRemove(Product p) {
-		
+		System.out.println(p);
 	}
 	
 }

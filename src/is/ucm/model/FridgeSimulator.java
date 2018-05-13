@@ -1,6 +1,7 @@
 package is.ucm.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 		_data = new Ini(file);
 		_f = new FoodContainer();
 		_random = new Random();
+		_obs = new ArrayList<FridgeSimulatorObserver>();
 		for (IniSection section : _data.getSections()) {
 			_f.addNewProduct(getProductfromSection(section));
 		}
@@ -45,7 +47,10 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 		while(_random.nextInt() < 5) {
 			
 			NotifyRemove(_f.removeRandomProduct());
-			
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+			}
 		}
 	}
 	
@@ -54,6 +59,7 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 			synchronized(o) {
 				o.onRemove(p);
 			}
+			
 		}
 	}
 
