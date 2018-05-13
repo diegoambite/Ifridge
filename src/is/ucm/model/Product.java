@@ -1,11 +1,19 @@
 package is.ucm.model;
 
+import is.ucm.model.categories.Category;
+
 public class Product {
 
 	private String _name;
 	private int _quantity;
 	private Category _category;
 
+	public Product(String name, int quantity, is.ucm.model.categories.Category category) {
+		_name = name;
+		_quantity = quantity;
+		_category = category;
+	}
+	
 	public String get_name() {
 		return _name;
 	}

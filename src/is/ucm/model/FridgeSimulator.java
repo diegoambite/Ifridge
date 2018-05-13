@@ -17,16 +17,22 @@ public class FridgeSimulator implements Runnable {
 	public FridgeSimulator(String file) throws IOException {
 		_data = new Ini(file);
 		for (IniSection section : _data.getSections()) {
-		
+			_f.addNewProduct(getProductfromSection(section));
 		}
 	}
 	
 	public Product getProductfromSection(IniSection section) {
 		for (Category c : InvokerCategories.getCategories()) {
-			if (c.getName().equals(section.getTag()) {
-				return c.execute(section);
+			if (c.getName().equals(section.getTag())) {
+				return c.execute(section.getValue("name"),
+						Category.parseNonNegInt(section, "quantity", 0));
 			}
 		}
+		return null;
+	}
+	
+	public FoodContainer getFoodContainer() {
+		return _f;
 	}
 
 	@Override

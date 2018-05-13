@@ -3,6 +3,8 @@ package is.ucm.model;
 import java.util.Hashtable;
 import java.util.List;
 
+import is.ucm.model.categories.Category;
+
 public class FoodContainer  {
 	
 	protected Hashtable<Category, List<Product>> _foodList;

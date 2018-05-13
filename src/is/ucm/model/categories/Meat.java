@@ -11,9 +11,10 @@ public class Meat extends Category {
 	}
 
 	@Override
-	public Product exectute() {
-		return 
+	public Product execute(String name, int quantity) {
+		return new Product(name, quantity, this);
 	}
+
 
 	
 }
