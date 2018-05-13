@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package is.ucm.model.categories;
 
 public class InvokerCategories {
@@ -25,3 +26,17 @@ public class InvokerCategories {
 	}
 }
 >>>>>>> stash
+=======
+package is.ucm.model.categories;
+
+public class InvokerCategories {
+	
+	private static Category[] _categories = {
+		new Meat()
+	};
+	
+	public static Category[] getCategories() {
+		return _categories;
+	}
+}
+>>>>>>> refs/remotes/origin/master
