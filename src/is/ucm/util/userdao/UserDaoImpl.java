@@ -10,6 +10,7 @@ import java.util.List;
 import is.ucm.model.User;
 import is.ucm.util.ini.Ini;
 import is.ucm.util.ini.IniSection;
+import is.ucm.util.password.Password;
 import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class UserDaoImpl implements UserDao {
@@ -46,7 +47,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void setNewUser(String username, String password) throws IOException {
+	public void setNewUser(String username, Password password) throws IOException {
 		
 		if (this.isUser(username)) {
 			this.updateUser(username, password);
@@ -70,7 +71,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void updateUser(String username, String password) throws IOException {
+	public void updateUser(String username, Password password) throws IOException {
 		Ini ini  = this.getIniFile();
 		for (IniSection section : ini.getSections()) {
 			if (section.getValue("username").equals(username)) {

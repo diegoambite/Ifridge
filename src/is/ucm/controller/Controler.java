@@ -3,6 +3,8 @@ package is.ucm.controller;
 import java.io.IOException;
 
 import is.ucm.model.Model;
+import is.ucm.util.password.BasePassword;
+import is.ucm.util.password.HashPassword;
 import is.ucm.util.userdao.UserDaoImpl;
 import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
@@ -25,14 +27,14 @@ public class Controler {
 	
 	public void registerUser(String username, String password) {
 		try {
-			userdao.setNewUser(username, password);
+			userdao.setNewUser(username, new HashPassword(new BasePassword(password)));
 		} catch (IOException e) {
 			//TODO send message of error to the user
 		}
 	}
 	
 	public boolean logInUser(String username, String password) throws IOException, UserNotFoundException {
-		return userdao.getUser(username).get_password().equals(password);
+		return userdao.getUser(username).get_password().equals(new HashPassword(new BasePassword(password)).generate());
 	}
 
 }
