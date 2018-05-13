@@ -16,6 +16,8 @@ public class FridgeSimulator implements Runnable {
 	
 	public FridgeSimulator(String file) throws IOException {
 		_data = new Ini(file);
+		_f = new FoodContainer();
+		_random = new Random();
 		for (IniSection section : _data.getSections()) {
 			_f.addNewProduct(getProductfromSection(section));
 		}
@@ -37,7 +39,9 @@ public class FridgeSimulator implements Runnable {
 
 	@Override
 	public void run() {
-		
+		while(_random.nextInt() < 5) {
+			_f.removeRandomProduct();
+		}
 	}
 	
 	
