@@ -14,7 +14,7 @@ public class Main {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new AccessView(ctr);
+				new AccessView(ctr, new MainView(ctr));
 			}
 		});
 	}
