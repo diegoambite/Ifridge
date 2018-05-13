@@ -8,8 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
-
-
 public class Toolbar extends JToolBar{
 	
 	private JButton _fridgeView, _buyView, _close;
@@ -42,8 +40,6 @@ public class Toolbar extends JToolBar{
 		//_close.addActionListener((ActionListener) frame);
 		_close.setIcon(new ImageIcon(loadImage("resources/icons/close.png")));
 		this.add(_close);
-		
-		
 		
 	}
 	
