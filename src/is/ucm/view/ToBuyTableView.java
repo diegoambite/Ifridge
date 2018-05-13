@@ -61,22 +61,4 @@ public class ToBuyTableView extends JPanel implements ListsObserver{
 	}
 	
 	
-
-	@Override
-	public void onRemove(Product p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onAdd(Product p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onEdit(Product p) {
-		// TODO Auto-generated method stub
-		
-	}
 }
