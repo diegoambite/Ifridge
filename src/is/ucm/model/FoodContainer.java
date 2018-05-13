@@ -1,14 +1,22 @@
 package is.ucm.model;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Random;
+
+import is.ucm.model.categories.Category;
+import is.ucm.model.categories.InvokerCategories;
 
 public class FoodContainer  {
 	
 	protected Hashtable<Category, List<Product>> _foodList;
 	
 	public FoodContainer() {
-		
+		_foodList = new Hashtable<Category, List<Product>>();
+		for (Category c : InvokerCategories.getCategories()) {
+			_foodList.put(c, new ArrayList<Product>());
+		}
 	}
 	 
 	public void addNewProduct(Product pro) {
@@ -29,6 +37,15 @@ public class FoodContainer  {
 			}
 		}
 		return index;
+	}
+	
+	public Product removeRandomProduct() {
+		Random rand = new Random();
+		int table = rand.nextInt(_foodList.size());
+		int list = rand.nextInt(_foodList.get(table).size());
+		Product p = _foodList.get(table).get(list);
+		_foodList.get(table).remove(list);
+		return p;
 	}
 	
 }

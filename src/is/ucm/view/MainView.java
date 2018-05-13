@@ -12,10 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> stash
 import is.ucm.controller.Controler;
 import is.ucm.model.FridgeSimulatorObserver;
 import is.ucm.model.Product;
