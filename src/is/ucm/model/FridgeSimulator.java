@@ -8,14 +8,17 @@ import java.util.Random;
 import is.ucm.model.categories.InvokerCategories;
 import is.ucm.util.ini.Ini;
 import is.ucm.util.ini.IniSection;
-import is.ucm.view.Observable;
+import is.ucm.model.Observable;
 import is.ucm.model.categories.Category;
 
 public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObserver>  {
 	
 	Random _random;
+	
 	Ini _data;
+	
 	FoodContainer _f;
+	
 	List<FridgeSimulatorObserver> _obs;
 	
 	public FridgeSimulator(String file) throws IOException {
@@ -23,7 +26,6 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 		_f = new FoodContainer();
 		_random = new Random();
 		_obs = new ArrayList<FridgeSimulatorObserver>();
-		
 	}
 	
 	public Product getProductfromSection(IniSection section) {
@@ -42,11 +44,15 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 
 	@Override
 	public void run() {
+		
+		// parses all the meals from the ini section
 		for (IniSection section : _data.getSections()) {
 			Product p = getProductfromSection(section);
 			_f.addNewProduct(p);
 			NotifyAdd(p);
 		}
+		
+		// keep trying to remove random products
 		while(true) {
 			if(_random.nextInt(100) < 5)
 				NotifyRemove(_f.removeRandomProduct());
@@ -56,6 +62,9 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 			}
 		}
 	}
+	
+	
+	// OBSERVER MANAGEMENT FUNCTIONS
 	
 	public void NotifyRemove(Product p) {
 		for (FridgeSimulatorObserver o : _obs) {
@@ -84,6 +93,5 @@ public class FridgeSimulator implements Runnable, Observable<FridgeSimulatorObse
 		_obs.remove(o);
 		
 	}
-	
 	
 }

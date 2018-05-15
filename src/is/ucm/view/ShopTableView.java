@@ -2,7 +2,6 @@ package is.ucm.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +13,21 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
-import is.ucm.model.FridgeSimulatorObserver;
 import is.ucm.model.ListsObserver;
 import is.ucm.model.Product;
 import is.ucm.model.categories.Category;
 
-public class ToBuyTableView extends JPanel implements ListsObserver {
+@SuppressWarnings("serial")
+public class ShopTableView extends JPanel implements ListsObserver {
 		
 	public static Border defaultBorder = BorderFactory.createLineBorder(Color.black, 2);
 
-	class ToBuyTableModel extends AbstractTableModel {
+	/**
+	 * Inner Class defining the behavior of the TableView
+	 * @author iFridge team
+	 */
+	class ShopTableModel extends AbstractTableModel {
 
 		private final String[] header = {"Name", "Quantity", "Edit", "Delete"};
 		
@@ -62,22 +64,40 @@ public class ToBuyTableView extends JPanel implements ListsObserver {
 	}
 	
 	
+	// ATTRIBUTES
+	
+	/**
+	 * Map containing the products of the table
+	 */
 	private List<Product> _map;
-	private ToBuyTableModel _roadsModel;
+	
+	/**
+	 * TableModel of the current table
+	 */
+	private ShopTableModel _shopTableModel;
+	
+	/**
+	 * Table of the current TableView
+	 */
 	private JTable _t;
 
-	public ToBuyTableView(){
+	
+	// CONSTRUCTOR
+	
+	public ShopTableView(){
 		_map = null;
-		initGUI();
 		
+		initGUI();
 	}
+	
 	
 	private void initGUI() {
 		this.setBorder(new TitledBorder(defaultBorder, "Shop List"));
 		this.setLayout(new BorderLayout());
-		_roadsModel = new ToBuyTableModel();
 		
-		_t = new JTable(_roadsModel);
+		_shopTableModel = new ShopTableModel();
+		
+		_t = new JTable(_shopTableModel);
 		_t.setShowGrid(false);
 		JScrollPane s = new JScrollPane(_t);
 		s.getViewport().setBackground(Color.WHITE);
@@ -96,6 +116,9 @@ public class ToBuyTableView extends JPanel implements ListsObserver {
 		
 	}
 
+	
+	// UPDATES CALLED BY THE OBSERVABLE
+	
 	@Override
 	public void onRemove(List<Product> list, Category c) {
 		// TODO Auto-generated method stub
@@ -113,4 +136,5 @@ public class ToBuyTableView extends JPanel implements ListsObserver {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

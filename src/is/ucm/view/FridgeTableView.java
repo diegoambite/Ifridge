@@ -17,11 +17,16 @@ import javax.swing.table.AbstractTableModel;
 import is.ucm.model.ListsObserver;
 import is.ucm.model.Product;
 import is.ucm.model.categories.Category;
-import is.ucm.view.ToBuyTableView.ToBuyTableModel;
 
+@SuppressWarnings("serial")
 public class FridgeTableView extends JPanel implements ListsObserver {
+	
 	public static Border defaultBorder = BorderFactory.createLineBorder(Color.black, 2);
 
+	/**
+	 * Inner Class defining the behavior of the TableView
+	 * @author iFridge team
+	 */
 	class FridgeTableModel extends AbstractTableModel {
 
 		private final String[] header = {"Name", "Quantity", "Buy"};
@@ -58,31 +63,64 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 	}
 	
 	
+	// ATTRIBUTES
+	
+	/**
+	 * Map containing the products of the table
+	 */
 	private List<Product> _map;
-	private FridgeTableModel _roadsModel;
+	
+	/**
+	 * TableModel of the current table
+	 */
+	private FridgeTableModel _fridgeTableModel;
+	
+	/**
+	 * Table of the current TableView
+	 */
 	private JTable _t;
+	
+	/**
+	 * Category of the current TableView
+	 */
 	private Category _c;
 
+	
+	// CONSTRUCTOR
+	
 	public FridgeTableView(Category c){
 		_map = null;
 		_c = c;
-		initGUI();
 		
+		initGUI();
 	}
 	
+	
+	/**
+	 * Initializing the GUI of the TableView
+	 */
 	private void initGUI() {
 		this.setBorder(new TitledBorder(defaultBorder, _c.getName()));
 		this.setLayout(new BorderLayout());
-		_roadsModel = new FridgeTableModel();
 		
-		_t = new JTable(_roadsModel);
+		// initializing fridgeTableModel
+		_fridgeTableModel = new FridgeTableModel();
+		
+		// creating the new table
+		_t = new JTable(_fridgeTableModel);
 		_t.setShowGrid(false);
+		
 		JScrollPane s = new JScrollPane(_t);
 		s.getViewport().setBackground(Color.WHITE);
-		this.add(s, BorderLayout.CENTER); //check
+		
+		this.add(s, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Return the selected products from the TableView
+	 * @return
+	 */
 	public List<Product> getSelected() {
 		int[] data =  _t.getSelectedRows();
 		List<Product> l = new ArrayList<Product>();
@@ -94,11 +132,14 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 		
 	}
 
+	
+	// UPDATES CALLED BY THE OBSERVABLE
+	
 	@Override
 	public void onRemove(List<Product> list, Category c) {
 		if (c.getName().equals(_c.getName())) {
 			_map = list;
-			_roadsModel.refresh();
+			_fridgeTableModel.refresh();
 		}
 		
 	}
@@ -107,7 +148,7 @@ public class FridgeTableView extends JPanel implements ListsObserver {
 	public void onAdd(List<Product> list, Category c) {
 		if (c.getName().equals(_c.getName())) {
 			_map = list;
-			_roadsModel.refresh();
+			_fridgeTableModel.refresh();
 		}
 		
 	}

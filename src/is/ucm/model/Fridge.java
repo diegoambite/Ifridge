@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import is.ucm.model.categories.Category;
-import is.ucm.view.Observable;
+import is.ucm.model.Observable;
 
-public class Fridge extends FoodContainer implements Observable<ListsObserver>, FridgeSimulatorObserver{
+public class Fridge extends FoodContainer implements Observable<ListsObserver>, FridgeSimulatorObserver {
 
 	private List<ListsObserver> _obs;
 	
@@ -18,6 +18,9 @@ public class Fridge extends FoodContainer implements Observable<ListsObserver>, 
 		_foodList.get(pro.get_category()).get(getIndex(pro)).set_quantity(amount);
 	}
 
+	
+	// OBSERVER MANAGEMENT FUNCTIONS
+	
 	@Override
 	public void addObserver(ListsObserver o) {
 		_obs.add(o);
@@ -26,18 +29,6 @@ public class Fridge extends FoodContainer implements Observable<ListsObserver>, 
 	@Override
 	public void removeObserver(ListsObserver o) {
 		_obs.remove(o);
-	}
-	
-	public void NotifyAdd(Category c) {
-		for (ListsObserver o : _obs) {
-			o.onAdd(this._foodList.get(c), c);
-		}
-	}
-	
-	public void NotifyRemove(Category c) {
-		for (ListsObserver o : _obs) {
-			o.onAdd(this._foodList.get(c), c);
-		}
 	}
 
 	@Override
@@ -51,6 +42,14 @@ public class Fridge extends FoodContainer implements Observable<ListsObserver>, 
 		this.addNewProduct(p);
 		NotifyAdd(p.get_category());
 	}
+
+	public void NotifyAdd(Category c) {
+		for (ListsObserver o : _obs)
+			o.onAdd(this._foodList.get(c), c);
+	}
 	
-	
+	public void NotifyRemove(Category c) {
+		for (ListsObserver o : _obs)
+			o.onRemove(this._foodList.get(c), c);
+	}
 }

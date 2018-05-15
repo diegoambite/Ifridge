@@ -2,9 +2,9 @@ package is.ucm.model;
 
 import java.util.List;
 
-import is.ucm.view.Observable;
+import is.ucm.model.Observable;
 
-public class ToBuy extends FoodContainer implements Observable<ListsObserver>{
+public class ToBuy extends FoodContainer implements Observable<ListsObserver> {
 	
 	private List<ListsObserver> _obs;
 	

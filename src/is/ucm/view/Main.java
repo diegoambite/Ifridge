@@ -1,11 +1,8 @@
 package is.ucm.view;
 
-import java.io.IOException;
-
 import javax.swing.SwingUtilities;
 
-import is.ucm.controller.Controler;
-import is.ucm.model.FridgeSimulator;
+import is.ucm.controller.Controller;
 import is.ucm.model.Model;
 
 public class Main {
@@ -13,12 +10,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 		final Model m = new Model();
-		Controler ctr = new Controler(m);
-		MainView view = new MainView(ctr);
+		Controller ctrl = new Controller(m);
+		MainView view = new MainView(ctrl);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new AccessView(ctr, view);
+				new AccessView(ctrl, view);
 			}
 		});
 		

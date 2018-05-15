@@ -1,10 +1,12 @@
 package is.ucm.model;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Model {
 	
 	private String _user, _password, _mail, _file;
+	
 	private int _age;
 	
 	public void saveData(String user, String psw, String mail, String file, int age) {
@@ -35,4 +37,5 @@ public class Model {
            }
         }
 	}
+
 }

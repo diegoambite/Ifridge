@@ -1,8 +1,6 @@
 package is.ucm.view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -17,16 +15,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import is.ucm.controller.Controler;
-import is.ucm.model.Model;
+import is.ucm.controller.Controller;
 import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
-
-
+/**
+ * Access View for the application. It's the one in charge of the login.
+ */
 @SuppressWarnings("serial")
 public class AccessView extends JFrame implements ActionListener {
 	
-	private Controler _ctr;
+	private Controller _ctr;
 	
 	 private JLabel l1, l2;
 	 private JTextField tf1;
@@ -36,13 +34,16 @@ public class AccessView extends JFrame implements ActionListener {
 	 
 	 private JFrame _mainView;
 	 
-	public AccessView(Controler ctr, JFrame mainView) {
+	public AccessView(Controller ctr, JFrame mainView) {
 		super("Register");
 		_ctr = ctr;
 		_mainView = mainView;
 		initGUI();
 	}
 
+	/**
+	 * Method that initializes the GUI for the Access View
+	 */
 	private void initGUI() {
 
 		_mainPanel = new JPanel(new GridLayout(6, 1));
@@ -93,20 +94,24 @@ public class AccessView extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if ("SEND".equals(e.getActionCommand())){
+		
+		switch(e.getActionCommand()) {
+
+		case "SEND":
 			this.setVisible(false);
-			
-		}
-		else if ("REGISTER".equals(e.getActionCommand())) {
+			break;
+
+		case "REGISTER":
 			this._ctr.registerUser(tf1.getText(), new String(p1.getPassword()));
 			JOptionPane.showMessageDialog(_mainPanel, "Registered", "Your user is ready to use the Ifridge technology!", JOptionPane.INFORMATION_MESSAGE);
 			this.setVisible(false);
 			_mainView.setVisible(true);
-		}
-		else if ("LOGIN".equals(e.getActionCommand())) {
+			break;
+
+		case "LOGIN":
 			try {
 				if (_ctr.logInUser(tf1.getText(), new String(p1.getPassword()))) {
-					//JOptionPane.showMessageDialog(_mainPanel, "Succesfull Log in", "Nice job mate", JOptionPane.INFORMATION_MESSAGE);
+					//JOptionPane.showMessageDialog(_mainPanel, "Successfully Log in", "Nice job mate", JOptionPane.INFORMATION_MESSAGE);
 					this.setVisible(false);
 					_mainView.setVisible(true);
 					_ctr.run();
@@ -118,6 +123,8 @@ public class AccessView extends JFrame implements ActionListener {
 			} catch (IOException | UserNotFoundException e1) {
 				JOptionPane.showMessageDialog(_mainPanel, "Error maaaan", e1.getMessage(), JOptionPane.ERROR_MESSAGE);
 			}
+			break;
+			
 		}
 		
 	}

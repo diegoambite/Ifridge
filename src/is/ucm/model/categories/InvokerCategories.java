@@ -5,7 +5,7 @@ public class InvokerCategories {
 	private static Category[] _categories = {
 		new Meat(),
 		new Vegetable(),
-		new Desert()
+		new Dessert()
 	};
 	
 	public static Category[] getCategories() {

@@ -2,11 +2,11 @@ package is.ucm.model.categories;
 
 import is.ucm.model.Product;
 
-public class Desert extends Category {
+public class Dessert extends Category {
 
-	private final static String NAME = "desert";
+	private final static String NAME = "dessert";
 	
-	public Desert() {
+	public Dessert() {
 		super(NAME);
 	}
 
