@@ -2,7 +2,7 @@ package is.ucm.buisness.model;
 
 import is.ucm.model.categories.Category;
 
-public class Product {
+public class ProductTransfer {
 
 	/**
 	 * Name of the product (Unique).
@@ -13,7 +13,7 @@ public class Product {
 	
 	private Category _category;
 
-	public Product(String name, int quantity, is.ucm.model.categories.Category category) {
+	public ProductTransfer(String name, int quantity, is.ucm.model.categories.Category category) {
 		_name = name;
 		_quantity = quantity;
 		_category = category;

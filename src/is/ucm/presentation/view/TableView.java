@@ -15,7 +15,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
 import is.ucm.buisness.model.ListsObserver;
-import is.ucm.buisness.model.Product;
+import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.model.categories.Category;
 
 @SuppressWarnings("serial")
@@ -68,7 +68,7 @@ public class TableView extends JPanel {
 	/**
 	 * Map containing the products of the table
 	 */
-	private List<Product> _list;
+	private List<ProductTransfer> _list;
 	
 	/**
 	 * TableModel of the current table
@@ -89,7 +89,7 @@ public class TableView extends JPanel {
 	// CONSTRUCTOR
 	
 	public TableView(Category c){
-		_list = new ArrayList<Product>();
+		_list = new ArrayList<ProductTransfer>();
 		_c = c;
 		
 		initGUI();
@@ -121,9 +121,9 @@ public class TableView extends JPanel {
 	 * Return the selected products from the TableView
 	 * @return
 	 */
-	public List<Product> getSelected() {
+	public List<ProductTransfer> getSelected() {
 		int[] data =  _t.getSelectedRows();
-		List<Product> l = new ArrayList<Product>();
+		List<ProductTransfer> l = new ArrayList<ProductTransfer>();
 		for (int i = 0; i < data.length; i++) {
 			l.add(_list.get(data[i]));
 		}
@@ -139,7 +139,7 @@ public class TableView extends JPanel {
 	
 	// UPDATES CALLED BY THE OBSERVABLE
 	
-	public void onRemove(Product p) {
+	public void onRemove(ProductTransfer p) {
 		if (p.get_category().getName().equals(_c.getName())) {
 			_list.remove(p);
 			_fridgeTableModel.refresh();
@@ -147,14 +147,14 @@ public class TableView extends JPanel {
 		
 	}
 
-	public void onAdd(Product p) {
+	public void onAdd(ProductTransfer p) {
 		if (p.get_category().getName().equals(_c.getName())) {
 			_list.add(p);
 		}
 		
 	}
 
-	public void onEdit(Product p) {
+	public void onEdit(ProductTransfer p) {
 		
 	}
 }

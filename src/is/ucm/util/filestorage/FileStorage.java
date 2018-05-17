@@ -11,12 +11,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import is.ucm.buisness.model.Product;
+import is.ucm.buisness.model.ProductTransfer;
 
 public class FileStorage {
 
 	private File storageFile;
-	private HashMap<String, Product> storageMap;
+	private HashMap<String, ProductTransfer> storageMap;
 
 	private boolean autosave;
 
@@ -64,7 +64,7 @@ public class FileStorage {
 		}
 
 		if (storageFile.createNewFile()) {
-			storageMap = new HashMap<String, Product>();
+			storageMap = new HashMap<String, ProductTransfer>();
 			save();
 		} else {
 			load();
@@ -88,10 +88,10 @@ public class FileStorage {
 	private void load() {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(storageFile)));
-			storageMap = (HashMap<String, Product>) ois.readObject();
+			storageMap = (HashMap<String, ProductTransfer>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -106,7 +106,7 @@ public class FileStorage {
 	 * @param o
 	 *            The Object.
 	 */
-	public void store(String key, Product o) throws IOException {
+	public void store(String key, ProductTransfer o) throws IOException {
 		storageMap.put(key, o);
 		if (autosave)
 			save();
@@ -125,7 +125,7 @@ public class FileStorage {
 	 * @param password
 	 *            The password.
 	 */
-	public void store(String key, Product o, String password) throws IOException {
+	public void store(String key, ProductTransfer o, String password) throws IOException {
 		store(key, o);
 	}
 
@@ -165,9 +165,9 @@ public class FileStorage {
 	 * 
 	 * @return all stored objects in an ArrayList of Objects
 	 */
-	public ArrayList<Product> getAllAsArrayList() {
-		ArrayList<Product> result = new ArrayList<Product>();
-		for (Product c : storageMap.values()) {
+	public ArrayList<ProductTransfer> getAllAsArrayList() {
+		ArrayList<ProductTransfer> result = new ArrayList<ProductTransfer>();
+		for (ProductTransfer c : storageMap.values()) {
 			result.add(c);
 		}
 		return result;
@@ -182,7 +182,7 @@ public class FileStorage {
 	 * 
 	 * @return all stored objects in a HashMap of Strings and Objects
 	 */
-	public HashMap<String, Product> getAll() {
+	public HashMap<String, ProductTransfer> getAll() {
 		return storageMap;
 	}
 

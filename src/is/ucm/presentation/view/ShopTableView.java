@@ -15,7 +15,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
 import is.ucm.buisness.model.ListsObserver;
-import is.ucm.buisness.model.Product;
+import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.model.categories.Category;
 
 @SuppressWarnings("serial")
@@ -67,7 +67,7 @@ public class ShopTableView extends JPanel implements ListsObserver {
 	/**
 	 * Map containing the products of the table
 	 */
-	private List<Product> _list;
+	private List<ProductTransfer> _list;
 	
 	/**
 	 * TableModel of the current table
@@ -103,9 +103,9 @@ public class ShopTableView extends JPanel implements ListsObserver {
 		this.setVisible(true);
 	}
 	
-	public List<Product> getSelected() {
+	public List<ProductTransfer> getSelected() {
 		int[] data =  _t.getSelectedRows();
-		List<Product> l = new ArrayList<Product>();
+		List<ProductTransfer> l = new ArrayList<ProductTransfer>();
 		for (int i = 0; i < data.length; i++) {
 			l.add(_list.get(data[i]));
 		}
@@ -118,19 +118,19 @@ public class ShopTableView extends JPanel implements ListsObserver {
 	// UPDATES CALLED BY THE OBSERVABLE
 	
 	@Override
-	public void onRemove(Product p) {
+	public void onRemove(ProductTransfer p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onAdd(Product p) {
+	public void onAdd(ProductTransfer p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onEdit(Product p) {
+	public void onEdit(ProductTransfer p) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -14,17 +14,17 @@ public interface ListsObserver {
 	 * @param list
 	 * @param c
 	 */
-	public void onRemove(Product p);
+	public void onRemove(ProductTransfer p);
 	
 	/**
 	 * Method to be performed when a product is added
 	 * @param list
 	 */
-	public void onAdd(Product p);
+	public void onAdd(ProductTransfer p);
 	
 	/**
 	 * Method to be performed when a product is edited
 	 * @param c
 	 */
-	public void onEdit(Product p);
+	public void onEdit(ProductTransfer p);
 }

@@ -8,7 +8,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import is.ucm.buisness.model.FoodContainerTransfer;
-import is.ucm.buisness.model.Product;
+import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.model.categories.Category;
 import is.ucm.util.filestorage.FileStorage;
 
@@ -22,9 +22,8 @@ public class ListDaoImpl implements ListDao {
 	public ListDaoImpl(String string) {
 		_directory = string;
 		_filenames = new ArrayList<String>();
-		
+		_files = new HashMap<String, FileStorage>();
 		File f = new File(string);
-		System.out.println(f.getAbsolutePath());
 		File[] paths = f.listFiles();
 		if (paths == null) return;
 		for (File file : paths) {
@@ -39,15 +38,23 @@ public class ListDaoImpl implements ListDao {
 	}
 
 	@Override
-	public Product getProduct(String name) {
+	public ProductTransfer getProduct(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean saveProduct(Product p) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean saveProduct(ProductTransfer p) {
+		try {
+			if (_files.containsKey(p.get_category())) {
+				_files.get(p.get_category().toString()).store(p.get_name(), p);
+			}
+		} catch (IOException e) {
+			return false;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 	@Override
@@ -55,7 +62,11 @@ public class ListDaoImpl implements ListDao {
 		FoodContainerTransfer transfer = new FoodContainerTransfer();
 		for (String f : _filenames) {
 			Category c = new Category(f);
-			transfer.addList(_files.get(f).getAllAsArrayList(), c);
+			try {
+				transfer.addList(_files.get(f).getAllAsArrayList(), c);
+			} catch (NullPointerException e) {
+				
+			}
 		}
 		return transfer;
 	}

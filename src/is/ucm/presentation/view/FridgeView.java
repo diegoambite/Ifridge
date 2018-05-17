@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import is.ucm.buisness.model.ListsObserver;
-import is.ucm.buisness.model.Product;
+import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.model.categories.Category;
 import is.ucm.presentation.controller.Controller;
 
@@ -49,7 +49,7 @@ public class FridgeView extends JPanel implements ListsObserver {
 	}
 
 	@Override
-	public void onRemove(Product p) {
+	public void onRemove(ProductTransfer p) {
 		
 		for (TableView t : _fridge) {
 			if (t.getCategory().equals(p.get_category())) {
@@ -60,7 +60,7 @@ public class FridgeView extends JPanel implements ListsObserver {
 	}
 
 	@Override
-	public void onAdd(Product p) {
+	public void onAdd(ProductTransfer p) {
 		if (!_categories.contains(p.get_category())) {
 			_categories.add(p.get_category());
 			TableView table = new TableView(p.get_category());
@@ -76,7 +76,7 @@ public class FridgeView extends JPanel implements ListsObserver {
 	}
 
 	@Override
-	public void onEdit(Product p) {
+	public void onEdit(ProductTransfer p) {
 		// TODO Auto-generated method stub
 		
 	}

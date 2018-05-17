@@ -1,6 +1,6 @@
 package is.ucm.model.categories;
 
-import is.ucm.buisness.model.Product;
+import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.util.ini.IniSection;
 
 public class Category {
