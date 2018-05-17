@@ -79,6 +79,7 @@ public class FoodContainerTransfer {
 	
 	public void addList(List<ProductTransfer> p, Category c) {
 		_foodList.put(c, p);
+		_categories.add(c);
 	}
 	
 	

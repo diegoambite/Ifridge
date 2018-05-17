@@ -91,7 +91,7 @@ public class FileStorage {
 			storageMap = (HashMap<String, ProductTransfer>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -138,7 +138,7 @@ public class FileStorage {
 	 *            The key the object is available under
 	 * @return your Object or null if nothing was found for <i>key</i>
 	 */
-	public Object get(String key) {
+	public ProductTransfer get(String key) {
 		return storageMap.get(key);
 	}
 

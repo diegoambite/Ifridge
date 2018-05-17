@@ -15,13 +15,15 @@ import is.ucm.presentation.controller.Controller;
 @SuppressWarnings("serial")
 public class Toolbar extends JToolBar implements ActionListener{
 	
-	private JButton _fridgeView, _buyView, _close;
+	private JButton _fridgeView, _buyView, _close, _delete;
 	
 	private MainView _main;
+	private Controller _controller;
 
-	public Toolbar(MainView main){//habra que meterle el controler
+	public Toolbar(MainView main, Controller controller){//habra que meterle el controler
 		super();	
 		_main = main;
+		_controller = controller;
 		//crtl.addObserver(this);
 		this.addSeparator();
 
@@ -32,6 +34,8 @@ public class Toolbar extends JToolBar implements ActionListener{
 		// Buy button
 		addToolbarButton(_buyView, "BUY", "Open buy list", "resources/icons/shopping-cart.png");
 		this.addSeparator();
+		
+		addToolbarButton(_delete, "DELETE", "Deletes the selected items from the list", "resources/icons/shopping-cart.png");
 		
 		// Separator to the end of the toolbar
 		this.add(Box.createHorizontalGlue());
@@ -76,6 +80,10 @@ public class Toolbar extends JToolBar implements ActionListener{
 		
 		case "EXIT":
 			_main.logOut();
+			break;
+		case "DELETE":
+			_main.deleteObjects();
+			break;
 		}
 	
 	}

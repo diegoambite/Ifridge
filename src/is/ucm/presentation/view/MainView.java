@@ -51,6 +51,8 @@ public class MainView extends JFrame {
 	 * Central Panel, that display the content of the current card (has a CardLayout)
 	 */
 	JPanel _contentPanel;
+
+	private int _card;
 	
 	public MainView(Controller ctrl) {
 		super();
@@ -99,25 +101,25 @@ public class MainView extends JFrame {
 	 */
 	public void setView(String s) {
 		
-		int card = -1;
+		_card = -1;
 		
 		switch(s) {
 		
 		case "FRIDGE":
-			card = 1;
+			_card = 1;
 			break;
 			
 		case "BUY":
-			card = 2;
+			_card = 2;
 			break;
 			
 		default:
-			card = 0;
+			_card = 0;
 			break;
 			
 		}
 		
-		showCard(card);
+		showCard(_card);
 		this.pack();
 	}
 	
@@ -145,8 +147,16 @@ public class MainView extends JFrame {
 	 * Method that adds a toolbar to the main Panel
 	 */
 	private void addToolBar() {
-		_toolbar = new Toolbar(this);
+		_toolbar = new Toolbar(this, _controller);
 		_mainPanel.add(_toolbar, BorderLayout.PAGE_START);
+	}
+
+	public void deleteObjects() {
+		if (_card == 1)
+			_controller.deleteObjects(_fridgeView.getSelected(), "fridge");
+		else if (_card == 2)
+			_controller.deleteObjects(this._shopView.getSelected(), "shopList");
+		
 	}
 
 }

@@ -19,13 +19,7 @@ public class Fridge implements Observable<ListsObserver> {
 	public Fridge() {
 		_obs = new ArrayList<ListsObserver>();
 		_dao = new ListDaoImpl("resources/fridge/"); //change the directory
-		_dao.saveProduct(new ProductTransfer("meat", 5, new Category("Meat")));
-		_food = _dao.getAllProducts();
-		for (Category c : _food.getCategories()) {
-			for (ProductTransfer p : _food.getList(c)) {
-				NotifyAdd(p);
-			}
-		}
+		
 	}
 	
 
@@ -50,5 +44,23 @@ public class Fridge implements Observable<ListsObserver> {
 	public void NotifyRemove(ProductTransfer p) {
 		for (ListsObserver o : _obs)
 			o.onRemove(p);
+	}
+
+
+
+	public FoodContainerTransfer loadData() {
+		return _dao.getAllProducts();
+	}
+
+
+
+	public void deleteObjects(List<ProductTransfer> selected) {
+		for (ProductTransfer t : selected) {
+			if (_dao.deleteProduct(t)) {
+				NotifyRemove(t);
+			}
+			
+		}
+		
 	}
 }

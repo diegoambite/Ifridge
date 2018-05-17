@@ -12,12 +12,12 @@ public class Main {
 		
 		Controller ctrl = new Controller();
 		MainView view = new MainView(ctrl);
-		
-		SwingUtilities.invokeLater(new Runnable() {
+		new AccessView(ctrl, view);
+		/*SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new AccessView(ctrl, view);
+				
 			}
-		});
+		});*/
 		
 		
 	}

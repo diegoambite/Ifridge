@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import is.ucm.buisness.model.FoodContainerTransfer;
 import is.ucm.buisness.model.ListsObserver;
 import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.model.categories.Category;
@@ -38,19 +39,21 @@ public class FridgeView extends JPanel implements ListsObserver {
 	public void initGUI() {
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(new JScrollPane());
-		
+		FoodContainerTransfer food = _controller.loadData("fridge");
 		// for each category add a table view to the list
-		for (Category c : _categories) {
+		for (Category c : food.getCategories()) {
 			TableView table = new TableView(c);
 			 _fridge.add(table);
 			 this.add(table);
+			 for (ProductTransfer p : food.getList(c)) {
+				 table.onAdd(p);
+			 }
 		}
 		
 	}
 
 	@Override
 	public void onRemove(ProductTransfer p) {
-		
 		for (TableView t : _fridge) {
 			if (t.getCategory().equals(p.get_category())) {
 				t.onRemove(p);
@@ -59,16 +62,18 @@ public class FridgeView extends JPanel implements ListsObserver {
 		
 	}
 
-	@Override
 	public void onAdd(ProductTransfer p) {
 		if (!_categories.contains(p.get_category())) {
 			_categories.add(p.get_category());
 			TableView table = new TableView(p.get_category());
 			_fridge.add(table);
 			this.add(table);
+			table.onAdd(p);
+			return;
 		}
 		for (TableView t : _fridge) {
 			if (t.getCategory().equals(p.get_category())) {
+				
 				t.onAdd(p);
 			}
 		}
@@ -79,6 +84,14 @@ public class FridgeView extends JPanel implements ListsObserver {
 	public void onEdit(ProductTransfer p) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<ProductTransfer> getSelected() {
+		List<ProductTransfer> selected = new ArrayList<ProductTransfer>();
+		for (TableView t : _fridge) {
+			selected.addAll(t.getSelected());
+		}
+		return selected;
 	}
 
 }

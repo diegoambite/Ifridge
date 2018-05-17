@@ -29,7 +29,7 @@ public class TableView extends JPanel {
 	 */
 	class FridgeTableModel extends AbstractTableModel {
 
-		private final String[] header = {"Name", "Quantity", "Buy"};
+		private final String[] header = {"Name", "Quantity"};
 		
 		public String getColumnName(int pos) {
 			return header[pos];	
@@ -51,7 +51,6 @@ public class TableView extends JPanel {
 			switch(columnIndex) {
 				case 0:	return _list.get(rowIndex).get_name();
 				case 1:	return _list.get(rowIndex).get_quantity();
-				case 2: return new JButton("hello");
 				default: return null;
 			}
 		}
@@ -140,17 +139,14 @@ public class TableView extends JPanel {
 	// UPDATES CALLED BY THE OBSERVABLE
 	
 	public void onRemove(ProductTransfer p) {
-		if (p.get_category().getName().equals(_c.getName())) {
-			_list.remove(p);
-			_fridgeTableModel.refresh();
-		}
+		_list.remove(p);
+		_fridgeTableModel.refresh();
 		
 	}
 
 	public void onAdd(ProductTransfer p) {
-		if (p.get_category().getName().equals(_c.getName())) {
-			_list.add(p);
-		}
+		_list.add(p);
+		_fridgeTableModel.refresh();
 		
 	}
 

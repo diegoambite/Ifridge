@@ -7,10 +7,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import is.ucm.buisness.model.FoodContainerTransfer;
+import is.ucm.buisness.model.ListsObserver;
+import is.ucm.buisness.model.ProductTransfer;
+import is.ucm.model.categories.Category;
 import is.ucm.presentation.controller.Controller;
 
 @SuppressWarnings("serial")
-public class ShopView extends JPanel {
+public class ShopView extends JPanel implements ListsObserver {
 	
 	/**
 	 * Kept with list, in case we'd want to organize the shop by categories
@@ -18,11 +22,13 @@ public class ShopView extends JPanel {
 	private List<ShopTableView> _shop;
 	
 	private Controller _controller;
+
+	private TableView _table;
 	
 	public ShopView(Controller controller) {
 		_controller = controller;
 		_shop = new ArrayList<ShopTableView>();
-		
+		_controller.addShopObserver(this);
 		initGUI();
 	}
 	
@@ -34,14 +40,37 @@ public class ShopView extends JPanel {
 		this.add(new JScrollPane());
 		
 		// just one category... add more to better organize the shop
-		_shop.add(new ShopTableView());
-		
-		// for each table view
-		for (ShopTableView c : _shop) {
-			_controller.addShopObserver(c);	// add an observer to the shop
-			this.add(c);						// add it to the panel
+		_table = new TableView(new Category("Shop List"));
+		FoodContainerTransfer food = _controller.loadData("shopList");
+		this.add(_table);
+		for (Category c : food.getCategories()) {
+			for (ProductTransfer p : food.getList(c)) {
+				_table.onAdd(p);
+			}
 		}
 		
+	}
+
+	@Override
+	public void onRemove(ProductTransfer p) {
+		_table.onRemove(p);
+		
+	}
+
+	@Override
+	public void onAdd(ProductTransfer p) {
+		_table.onAdd(p);
+		
+	}
+
+	@Override
+	public void onEdit(ProductTransfer p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<ProductTransfer> getSelected() {
+		return _table.getSelected();
 	}
 
 }

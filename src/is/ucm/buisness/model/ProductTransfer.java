@@ -1,8 +1,15 @@
 package is.ucm.buisness.model;
 
+import java.io.Serializable;
+
 import is.ucm.model.categories.Category;
 
-public class ProductTransfer {
+public class ProductTransfer implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Name of the product (Unique).

@@ -1,10 +1,16 @@
 package is.ucm.model.categories;
 
+import java.io.Serializable;
+
 import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.util.ini.IniSection;
 
-public class Category {
+public class Category implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The name of the category element
 	 */
@@ -18,5 +24,14 @@ public class Category {
 		return _name;
 	}
 	
+	@Override
+	public String toString() {
+		return _name;
+	}
+	
+	@Override
+	public boolean equals(Object c) {
+		return this.toString().equals(c.toString());
+	}
 	
 }

@@ -1,8 +1,11 @@
 package is.ucm.presentation.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import is.ucm.buisness.model.FoodContainerTransfer;
 import is.ucm.buisness.model.ListsObserver;
+import is.ucm.buisness.model.ProductTransfer;
 import is.ucm.buisness.model.ShopList;
 import is.ucm.buisness.model.appservice.AppService;
 import is.ucm.buisness.model.user.UserTransfer;
@@ -42,6 +45,15 @@ public class Controller {
 
 	public void addShopObserver(ListsObserver c) {
 		_appservice.addShopObserver(c);
+		
+	}
+
+	public FoodContainerTransfer loadData(String id) {
+		return _appservice.loadData(id);
+	}
+
+	public void deleteObjects(List<ProductTransfer> selected, String string) {
+		_appservice.deleteObjects(selected, string);
 		
 	}
 

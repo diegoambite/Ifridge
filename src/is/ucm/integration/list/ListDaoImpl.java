@@ -29,7 +29,7 @@ public class ListDaoImpl implements ListDao {
 		for (File file : paths) {
 			try {
 				_filenames.add(file.getName());
-				_files.put(f.getName(), new FileStorage(file));
+				_files.put(file.getName(), new FileStorage(file));
 			} catch (IllegalArgumentException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -39,18 +39,19 @@ public class ListDaoImpl implements ListDao {
 
 	@Override
 	public ProductTransfer getProduct(String name) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean saveProduct(ProductTransfer p) {
 		try {
-			if (_files.containsKey(p.get_category())) {
-				_files.get(p.get_category().toString()).store(p.get_name(), p);
+			if (!_files.containsKey(p.get_category().toString())) {
+				_files.put(p.get_category().toString(), new FileStorage(new File(_directory + "/" + p.get_category())));
+				_filenames.add(p.get_category().toString());
 			}
+			_files.get(p.get_category().toString()).store(p.get_name(), p);
 		} catch (IOException e) {
-			return false;
+			e.printStackTrace();
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -69,6 +70,37 @@ public class ListDaoImpl implements ListDao {
 			}
 		}
 		return transfer;
+	}
+
+	@Override
+	public boolean deleteProduct(ProductTransfer p) {
+		if (!_files.containsKey(p.get_category().toString())) return false;
+		try {
+			ProductTransfer k = _files.get(p.get_category().toString()).get(p.get_name());
+			if (k.get_quantity() > p.get_quantity()) {
+				changeAmount(p, k.get_quantity() - p.get_quantity());
+				return true;
+			}
+			_files.get(p.get_category().toString()).remove(p.get_name());
+			_filenames.remove(p.get_category().toString());
+			new File(_directory + "/" + p.get_category().toString()).delete();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean changeAmount(ProductTransfer p, int amount) {
+		if (!_files.containsKey(p.get_category().toString())) return false;
+		try {
+			ProductTransfer k = _files.get(p.get_category().toString()).get(p.get_name());
+			k.set_quantity(amount);
+			_files.get(p.get_category().toString()).store(p.get_name(), k);
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 	}
 
 }
