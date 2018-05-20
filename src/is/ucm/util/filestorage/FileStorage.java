@@ -13,6 +13,8 @@ import java.util.HashMap;
 
 import is.ucm.model.transfer.ProductTransfer;
 
+
+
 public class FileStorage {
 
 	private File storageFile;
