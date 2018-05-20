@@ -40,7 +40,12 @@ public class Toolbar extends JToolBar implements ActionListener{
 		addToolbarButton(_buyView, "BUY", "Open buy list", "resources/icons/shopping-cart.png");
 		this.addSeparator();
 		
-		addToolbarButton(_delete, "DELETE", "Deletes the selected items from the list", "resources/icons/shopping-cart.png");
+		//Move to fridge button
+		addToolbarButton(_buyView, "MOVE", "Move selected items to the fridge", "resources/icons/arrow-left-c.png");
+		this.addSeparator();
+		
+		
+		addToolbarButton(_delete, "DELETE", "Deletes the selected items from the list", "resources/icons/shopping-cart-del.jpg");
 		
 		// Separator to the end of the toolbar
 		this.add(Box.createHorizontalGlue());
