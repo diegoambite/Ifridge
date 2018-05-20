@@ -58,4 +58,10 @@ public class ProductTransfer implements Serializable {
 	public String toString() {
 		return _name + ": " + _quantity;
 	}
+
+
+	public void set_quantity(int i) {
+		this._quantity = i;
+		
+	}
 }
