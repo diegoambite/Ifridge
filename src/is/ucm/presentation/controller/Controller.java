@@ -3,10 +3,10 @@ package is.ucm.presentation.controller;
 import java.io.IOException;
 import java.util.List;
 
-import is.ucm.business.model.FoodContainerTransfer;
-import is.ucm.business.model.ListsObserver;
-import is.ucm.business.model.ProductTransfer;
 import is.ucm.business.model.appservice.AppService;
+import is.ucm.business.model.observer.ListsObserver;
+import is.ucm.business.model.transfer.FoodContainerTransfer;
+import is.ucm.business.model.transfer.ProductTransfer;
 import is.ucm.exceptions.UserNotFoundException;
 
 public class Controller {

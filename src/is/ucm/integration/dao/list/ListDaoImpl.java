@@ -1,4 +1,4 @@
-package is.ucm.integration.list;
+package is.ucm.integration.dao.list;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import is.ucm.business.model.Category;
-import is.ucm.business.model.FoodContainerTransfer;
-import is.ucm.business.model.ProductTransfer;
+import is.ucm.business.model.transfer.FoodContainerTransfer;
+import is.ucm.business.model.transfer.ProductTransfer;
 import is.ucm.util.filestorage.FileStorage;
 
 public class ListDaoImpl implements ListDao {

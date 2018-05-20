@@ -1,4 +1,4 @@
-package is.ucm.business.model.user;
+package is.ucm.business.model.transfer;
 
 /**
  * Value Object containing all the information about a user. 

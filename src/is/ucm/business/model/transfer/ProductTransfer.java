@@ -1,6 +1,8 @@
-package is.ucm.business.model;
+package is.ucm.business.model.transfer;
 
 import java.io.Serializable;
+
+import is.ucm.business.model.Category;
 
 public class ProductTransfer implements Serializable {
 

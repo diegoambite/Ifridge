@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import is.ucm.business.model.ProductTransfer;
+import is.ucm.business.model.transfer.ProductTransfer;
 
 public class FileStorage {
 
