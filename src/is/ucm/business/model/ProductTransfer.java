@@ -2,8 +2,6 @@ package is.ucm.business.model;
 
 import java.io.Serializable;
 
-import is.ucm.business.model.categories.Category;
-
 public class ProductTransfer implements Serializable {
 
 	/**
@@ -20,7 +18,7 @@ public class ProductTransfer implements Serializable {
 	
 	private Category _category;
 
-	public ProductTransfer(String name, int quantity, is.ucm.business.model.categories.Category category) {
+	public ProductTransfer(String name, int quantity, is.ucm.business.model.Category category) {
 		_name = name;
 		_quantity = quantity;
 		_category = category;

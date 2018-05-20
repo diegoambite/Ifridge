@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import is.ucm.business.model.Category;
 import is.ucm.business.model.FoodContainerTransfer;
 import is.ucm.business.model.ProductTransfer;
-import is.ucm.business.model.categories.Category;
 import is.ucm.util.filestorage.FileStorage;
 
 public class ListDaoImpl implements ListDao {

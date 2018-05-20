@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import is.ucm.business.model.categories.Category;
-
 public class FoodContainerTransfer {
 	
 	
