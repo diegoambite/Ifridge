@@ -1,14 +1,25 @@
 package is.ucm.presentation.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.text.JTextComponent;
 
 import is.ucm.model.business.Category;
 import is.ucm.model.observer.ListsObserver;
@@ -28,6 +39,7 @@ public class ShopView extends JPanel implements ListsObserver {
 
 	private TableView _table;
 	
+	 private JDialog dialog = new JDialog();
 	
 	// CONSTRUCTOR
 	
@@ -65,19 +77,66 @@ public class ShopView extends JPanel implements ListsObserver {
 			}
 		}
 		
-		JPanel bottomPart = new JPanel(new BoxLayout(this, BoxLayout.X_AXIS));
+		
+		JPanel bottomPart = new JPanel();
+		BoxLayout bottom = new BoxLayout(bottomPart, BoxLayout.X_AXIS);
+		bottomPart.setLayout(bottom);
 		JButton plus = new JButton("+");
+		bottomPart.add(plus);
 		plus.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				dialog.setPreferredSize(new Dimension(320, 240));
+			    dialog.add(dialogPanel());
+			    dialog.pack();
+			    dialog.setTitle("Add an item to the shop list");
+			    dialog.setVisible(true);
 				
 			}
 		});
 		
+		this.add(bottomPart);
 	}
 
+	private JPanel dialogPanel() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		JTextArea areaCategory = new JTextArea();
+		
+		Border b = BorderFactory.createLineBorder(Color.BLACK, 2);
+		JScrollPane category = new JScrollPane(areaCategory, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		category.setBorder(BorderFactory.createTitledBorder(b, "Category"));
+		category.getViewport().setBackground(Color.WHITE);
+		
+		
+		JTextArea areaFood = new JTextArea();
+		JScrollPane food = new JScrollPane(areaFood, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		food.setBorder(BorderFactory.createTitledBorder(b, "Food"));
+		food.getViewport().setBackground(Color.WHITE);
+		
+		
+		JTextArea areaQuantity = new JTextArea();
+		
+		JScrollPane quantity = new JScrollPane(areaQuantity, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		quantity.setBorder(BorderFactory.createTitledBorder(b, "Quantity"));
+		quantity.getViewport().setBackground(Color.WHITE);
+		
+		panel.add(category);
+		panel.add(food);
+		panel.add(quantity);
+		
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+		JButton confirm = new JButton("Confirm");
+		JButton cancel = new JButton("Cancel");
+		bottomPanel.add(confirm);
+		bottomPanel.add(cancel);
+		panel.add(bottomPanel);
+		
+		return panel;
+	}
 	
 	// EVENT OBSERVER METHODS
 	
