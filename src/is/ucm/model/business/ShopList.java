@@ -66,6 +66,14 @@ public class ShopList implements Observable<ListsObserver> {
 		}
 		
 	}
+
+
+	public void addObject(ProductTransfer productTransfer) {
+		if (_dao.saveProduct(productTransfer)) {
+			NotifyAdd(productTransfer);
+		}
+		
+	}
 }
 
 

@@ -78,4 +78,17 @@ public class AppService {
 		
 	}
 
+	public void addObject(ProductTransfer productTransfer, String string) {
+		switch(string) {
+		case "shopList":
+			_shopList.addObject(productTransfer);
+			break;
+		case "fridge":
+			_fridge.addObject(productTransfer);
+			break;
+		}
+		return;
+		
+	}
+
 }

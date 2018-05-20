@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
+import is.ucm.model.business.Category;
+import is.ucm.model.transfer.ProductTransfer;
 import is.ucm.presentation.controller.Controller;
 
 /**
@@ -57,7 +59,7 @@ public class MainView extends JFrame {
 	 */
 	JPanel _mainPanel;
 	
-	 private JDialog dialog = new JDialog();
+	 
 	
 	/**
 	 * Central Panel, that display the content of the current card (has a CardLayout)
@@ -104,24 +106,7 @@ public class MainView extends JFrame {
 		int width = (int) (screenSize.width * 0.20);
 		setPreferredSize(new Dimension(width, height));
 		
-		JPanel bottomPart = new JPanel();
-		BoxLayout bottom = new BoxLayout(bottomPart, BoxLayout.X_AXIS);
-		bottomPart.setLayout(bottom);
-		JButton plus = new JButton("+");
-		bottomPart.add(plus);
-		plus.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				dialog.setPreferredSize(new Dimension(320, 240));
-			    dialog.add(dialogPanel());
-			    dialog.pack();
-			    dialog.setTitle("Add an item to the shop list");
-			    dialog.setVisible(true);
-			}
-		});
 		
-		this.add(bottomPart, BorderLayout.PAGE_END);
 		
 		this.pack();
 	}
@@ -189,43 +174,6 @@ public class MainView extends JFrame {
 			_controller.deleteObjects(this._shopView.getSelected(), "shopList");	
 	}
 
-	private JPanel dialogPanel() {
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		
-		JTextArea areaCategory = new JTextArea();
-		
-		Border b = BorderFactory.createLineBorder(Color.BLACK, 2);
-		JScrollPane category = new JScrollPane(areaCategory, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		category.setBorder(BorderFactory.createTitledBorder(b, "Category"));
-		category.getViewport().setBackground(Color.WHITE);
-		
-		
-		JTextArea areaFood = new JTextArea();
-		JScrollPane food = new JScrollPane(areaFood, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		food.setBorder(BorderFactory.createTitledBorder(b, "Food"));
-		food.getViewport().setBackground(Color.WHITE);
-		
-		
-		JTextArea areaQuantity = new JTextArea();
-		
-		JScrollPane quantity = new JScrollPane(areaQuantity, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		quantity.setBorder(BorderFactory.createTitledBorder(b, "Quantity"));
-		quantity.getViewport().setBackground(Color.WHITE);
-		
-		panel.add(category);
-		panel.add(food);
-		panel.add(quantity);
-		
-		JPanel bottomPanel = new JPanel();
-		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
-		JButton confirm = new JButton("Confirm");
-		JButton cancel = new JButton("Cancel");
-		bottomPanel.add(confirm);
-		bottomPanel.add(cancel);
-		panel.add(bottomPanel);
-		
-		return panel;
-	}
+	
 
 }

@@ -48,5 +48,11 @@ public class Controller {
 	public void deleteObjects(List<ProductTransfer> selected, String string) {
 		_appservice.deleteObjects(selected, string);
 	}
+
+
+	public void addObject(ProductTransfer productTransfer, String string) {
+		_appservice.addObject(productTransfer, string);
+		
+	}
 	
 }
