@@ -10,9 +10,6 @@ public class ProductTransfer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	/**
-	 * Name of the product (Unique).
-	 */
 	private String _name;
 	
 	private int _quantity;
@@ -22,7 +19,7 @@ public class ProductTransfer implements Serializable {
 	
 	// CONSTRUCTOR
 	
-	public ProductTransfer(String name, int quantity, is.ucm.model.business.Category category) {
+	public ProductTransfer(String name, int quantity, Category category) {
 		_name = name;
 		_quantity = quantity;
 		_category = category;
@@ -39,10 +36,6 @@ public class ProductTransfer implements Serializable {
 		return _quantity;
 	}
 	
-	public void set_quantity(int _quantity) {
-		this._quantity = _quantity;
-	}
-	
 	public Category get_category() {
 		return _category;
 	}
@@ -51,13 +44,16 @@ public class ProductTransfer implements Serializable {
 	// UTILITY FUNCTIONS
 	
 	/**
-	 * Returns a hash code for the object based on the product category
+	 * Overrides the product transfer hash code with the category hash code
 	 */
 	@Override
 	public int hashCode() {
 		return _category.hashCode();
 	}
 	
+	/**
+	 * String representation of the object
+	 */
 	@Override
 	public String toString() {
 		return _name + ": " + _quantity;

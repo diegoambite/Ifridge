@@ -80,6 +80,7 @@ public class ListDaoImpl implements ListDao {
 				
 			}
 		}
+		
 		return new FoodContainerTransfer(foodList, categories);
 	}
 
@@ -101,14 +102,28 @@ public class ListDaoImpl implements ListDao {
 		return true;
 	}
 
+	/**
+	 * Changed the amount of the desired product in the storage system
+	 */
 	@Override
 	public boolean changeAmount(ProductTransfer p, int amount) {
-		if (!_files.containsKey(p.get_category().toString())) return false;
+		
+		// if _files doesn't contain the corresponding category
+		if (!_files.containsKey(p.get_category().toString())) 
+			return false;
+		
 		try {
+			
+			// try to get the actual parameters of the selected product
 			ProductTransfer k = _files.get(p.get_category().toString()).get(p.get_name());
-			k.set_quantity(amount);
-			_files.get(p.get_category().toString()).store(p.get_name(), k);
-		} catch (IOException e) {
+			
+			// set the new parameters for the product (eventual NullPointerException is thrown)
+			ProductTransfer r = new ProductTransfer(k.get_name(), amount, k.get_category());
+			
+			// replace the product
+			_files.get(p.get_category().toString()).store(p.get_name(), r);
+			
+		} catch (IOException | NullPointerException e) {
 			return false;
 		}
 		return true;
