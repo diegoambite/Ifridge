@@ -4,8 +4,8 @@ package is.ucm.integration.dao.user;
 import java.io.IOException;
 import java.util.List;
 
-import is.ucm.business.model.transfer.UserTransfer;
 import is.ucm.exceptions.UserNotFoundException;
+import is.ucm.model.transfer.UserTransfer;
 import is.ucm.util.password.Password;
 
 public interface UserDao {

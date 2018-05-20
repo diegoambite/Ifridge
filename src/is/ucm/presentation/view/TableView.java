@@ -13,8 +13,8 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
-import is.ucm.business.model.Category;
-import is.ucm.business.model.transfer.ProductTransfer;
+import is.ucm.model.business.Category;
+import is.ucm.model.transfer.ProductTransfer;
 
 @SuppressWarnings("serial")
 public class TableView extends JPanel {

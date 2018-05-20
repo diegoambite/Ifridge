@@ -7,8 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import is.ucm.business.model.transfer.UserTransfer;
 import is.ucm.exceptions.UserNotFoundException;
+import is.ucm.model.transfer.UserTransfer;
 import is.ucm.util.ini.Ini;
 import is.ucm.util.ini.IniSection;
 import is.ucm.util.password.Password;

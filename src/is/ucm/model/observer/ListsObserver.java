@@ -1,6 +1,6 @@
-package is.ucm.business.model.observer;
+package is.ucm.model.observer;
 
-import is.ucm.business.model.transfer.ProductTransfer;
+import is.ucm.model.transfer.ProductTransfer;
 
 /**
  * Used to connect the fridge and to-buy to the tables on the view

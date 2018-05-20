@@ -1,18 +1,17 @@
-package is.ucm.business.model;
+package is.ucm.model.business;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import is.ucm.business.model.observer.ListsObserver;
-import is.ucm.business.model.observer.Observable;
-import is.ucm.business.model.transfer.FoodContainerTransfer;
-import is.ucm.business.model.transfer.ProductTransfer;
 import is.ucm.integration.dao.list.ListDao;
 import is.ucm.integration.dao.list.ListDaoImpl;
+import is.ucm.model.observer.ListsObserver;
+import is.ucm.model.observer.Observable;
+import is.ucm.model.transfer.FoodContainerTransfer;
+import is.ucm.model.transfer.ProductTransfer;
 
-public class ShopList implements Observable<ListsObserver> {
-	
-	
+public class Fridge implements Observable<ListsObserver> {
+
 	private List<ListsObserver> _obs;
 		
 	private ListDao _dao;
@@ -20,14 +19,13 @@ public class ShopList implements Observable<ListsObserver> {
 	
 	// CONSTRUCTOR
 	
-	public ShopList() {
+	public Fridge() {
 		_obs = new ArrayList<ListsObserver>();
-		_dao = new ListDaoImpl("resources/ShopList/"); //change the directory
-		_dao.saveProduct(new ProductTransfer("venison", 5, new Category("Meat")));
-		_dao.saveProduct(new ProductTransfer("tomatoe", 8, new Category("Vegetables")));
+		_dao = new ListDaoImpl("resources/fridge/"); //change the directory
+		
 	}
 	
-	
+
 	// OBSERVER MANAGEMENT FUNCTIONS
 	
 	@Override
@@ -50,7 +48,7 @@ public class ShopList implements Observable<ListsObserver> {
 			o.onRemove(p);
 	}
 
-	
+
 	// FUNCTIONAL METHODS
 	
 	public FoodContainerTransfer loadData() {
@@ -67,5 +65,3 @@ public class ShopList implements Observable<ListsObserver> {
 		
 	}
 }
-
-

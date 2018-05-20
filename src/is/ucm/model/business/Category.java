@@ -1,4 +1,4 @@
-package is.ucm.business.model;
+package is.ucm.model.business;
 
 import java.io.Serializable;
 

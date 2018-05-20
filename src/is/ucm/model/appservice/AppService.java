@@ -1,14 +1,14 @@
-package is.ucm.business.model.appservice;
+package is.ucm.model.appservice;
 
 import java.util.List;
 
-import is.ucm.business.model.Fridge;
-import is.ucm.business.model.ShopList;
-import is.ucm.business.model.User;
-import is.ucm.business.model.observer.ListsObserver;
-import is.ucm.business.model.transfer.FoodContainerTransfer;
-import is.ucm.business.model.transfer.ProductTransfer;
-import is.ucm.business.model.transfer.UserTransfer;
+import is.ucm.model.business.Fridge;
+import is.ucm.model.business.ShopList;
+import is.ucm.model.business.User;
+import is.ucm.model.observer.ListsObserver;
+import is.ucm.model.transfer.FoodContainerTransfer;
+import is.ucm.model.transfer.ProductTransfer;
+import is.ucm.model.transfer.UserTransfer;
 import is.ucm.util.password.BasePassword;
 import is.ucm.util.password.HashPassword;
 
