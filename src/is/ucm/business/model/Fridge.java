@@ -3,8 +3,12 @@ package is.ucm.business.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import is.ucm.integration.list.ListDao;
-import is.ucm.integration.list.ListDaoImpl;
+import is.ucm.business.model.observer.ListsObserver;
+import is.ucm.business.model.observer.Observable;
+import is.ucm.business.model.transfer.FoodContainerTransfer;
+import is.ucm.business.model.transfer.ProductTransfer;
+import is.ucm.integration.dao.list.ListDao;
+import is.ucm.integration.dao.list.ListDaoImpl;
 
 public class Fridge implements Observable<ListsObserver> {
 

@@ -1,8 +1,10 @@
-package is.ucm.business.model;
+package is.ucm.business.model.transfer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import is.ucm.business.model.Category;
 
 public class FoodContainerTransfer {
 	
