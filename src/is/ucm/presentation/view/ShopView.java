@@ -1,9 +1,12 @@
 package is.ucm.presentation.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -48,6 +51,17 @@ public class ShopView extends JPanel implements ListsObserver {
 				_table.onAdd(p);
 			}
 		}
+		
+		JPanel bottomPart = new JPanel(new BoxLayout(this, BoxLayout.X_AXIS));
+		JButton plus = new JButton("+");
+		plus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
 		
 	}
 
