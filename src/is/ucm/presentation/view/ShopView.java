@@ -92,7 +92,6 @@ public class ShopView extends JPanel implements ListsObserver {
 			    dialog.pack();
 			    dialog.setTitle("Add an item to the shop list");
 			    dialog.setVisible(true);
-				
 			}
 		});
 		
