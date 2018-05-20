@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,9 +13,8 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
-import is.ucm.buisness.model.ListsObserver;
-import is.ucm.buisness.model.ProductTransfer;
-import is.ucm.model.categories.Category;
+import is.ucm.business.model.ListsObserver;
+import is.ucm.business.model.ProductTransfer;
 
 @SuppressWarnings("serial")
 public class ShopTableView extends JPanel implements ListsObserver {

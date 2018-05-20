@@ -3,17 +3,10 @@ package is.ucm.presentation.controller;
 import java.io.IOException;
 import java.util.List;
 
-import is.ucm.buisness.model.FoodContainerTransfer;
-import is.ucm.buisness.model.ListsObserver;
-import is.ucm.buisness.model.ProductTransfer;
-import is.ucm.buisness.model.ShopList;
-import is.ucm.buisness.model.appservice.AppService;
-import is.ucm.buisness.model.user.UserTransfer;
-import is.ucm.integration.user.UserDaoImpl;
-import is.ucm.presentation.view.ShopTableView;
-import is.ucm.presentation.view.TableView;
-import is.ucm.util.password.BasePassword;
-import is.ucm.util.password.HashPassword;
+import is.ucm.business.model.FoodContainerTransfer;
+import is.ucm.business.model.ListsObserver;
+import is.ucm.business.model.ProductTransfer;
+import is.ucm.business.model.appservice.AppService;
 import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class Controller {

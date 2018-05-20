@@ -1,4 +1,4 @@
-package is.ucm.buisness.model.user;
+package is.ucm.business.model.user;
 
 import java.io.IOException;
 

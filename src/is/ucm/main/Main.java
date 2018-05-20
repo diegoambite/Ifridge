@@ -1,7 +1,5 @@
 package is.ucm.main;
 
-import javax.swing.SwingUtilities;
-
 import is.ucm.presentation.controller.Controller;
 import is.ucm.presentation.view.AccessView;
 import is.ucm.presentation.view.MainView;

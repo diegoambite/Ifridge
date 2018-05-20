@@ -4,7 +4,7 @@ package is.ucm.integration.user;
 import java.io.IOException;
 import java.util.List;
 
-import is.ucm.buisness.model.user.UserTransfer;
+import is.ucm.business.model.user.UserTransfer;
 import is.ucm.util.password.Password;
 import is.ucm.util.userdao.exceptions.UserNotFoundException;
 

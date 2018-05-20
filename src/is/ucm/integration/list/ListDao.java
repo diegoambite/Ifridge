@@ -1,11 +1,7 @@
 package is.ucm.integration.list;
 
-import java.util.Hashtable;
-import java.util.List;
-
-import is.ucm.buisness.model.FoodContainerTransfer;
-import is.ucm.buisness.model.ProductTransfer;
-import is.ucm.model.categories.Category;
+import is.ucm.business.model.FoodContainerTransfer;
+import is.ucm.business.model.ProductTransfer;
 
 public interface ListDao {
 	public ProductTransfer getProduct(String name);

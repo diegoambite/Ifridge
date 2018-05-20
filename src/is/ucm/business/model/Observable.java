@@ -1,4 +1,4 @@
-package is.ucm.buisness.model;
+package is.ucm.business.model;
 
 public interface Observable<T>{
 	

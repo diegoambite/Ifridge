@@ -1,18 +1,19 @@
-package is.ucm.buisness.model.appservice;
+package is.ucm.business.model.appservice;
 
 import java.util.List;
 
-import is.ucm.buisness.model.FoodContainerTransfer;
-import is.ucm.buisness.model.Fridge;
-import is.ucm.buisness.model.ListsObserver;
-import is.ucm.buisness.model.ProductTransfer;
-import is.ucm.buisness.model.ShopList;
-import is.ucm.buisness.model.user.User;
-import is.ucm.buisness.model.user.UserTransfer;
+import is.ucm.business.model.FoodContainerTransfer;
+import is.ucm.business.model.Fridge;
+import is.ucm.business.model.ListsObserver;
+import is.ucm.business.model.ProductTransfer;
+import is.ucm.business.model.ShopList;
+import is.ucm.business.model.user.User;
+import is.ucm.business.model.user.UserTransfer;
 import is.ucm.util.password.BasePassword;
 import is.ucm.util.password.HashPassword;
 
 public class AppService {
+	
 	private Fridge _fridge;
 	
 	private ShopList _shopList;
@@ -66,4 +67,5 @@ public class AppService {
 		return;
 		
 	}
+
 }

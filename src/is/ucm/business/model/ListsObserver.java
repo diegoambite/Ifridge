@@ -1,8 +1,4 @@
-package is.ucm.buisness.model;
-
-import java.util.List;
-
-import is.ucm.model.categories.Category;
+package is.ucm.business.model;
 
 /**
  * Used to connect the fridge and to-buy to the tables on the view

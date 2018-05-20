@@ -3,12 +3,11 @@ package is.ucm.integration.user;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import is.ucm.buisness.model.user.UserTransfer;
+import is.ucm.business.model.user.UserTransfer;
 import is.ucm.util.ini.Ini;
 import is.ucm.util.ini.IniSection;
 import is.ucm.util.password.Password;
