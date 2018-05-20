@@ -53,11 +53,11 @@ public class ListDaoImpl implements ListDao {
 	@Override
 	public boolean saveProduct(ProductTransfer p) {
 		try {
-			if (!_files.containsKey(p.get_category().toString())) {
-				_files.put(p.get_category().toString(), new FileStorage(new File(_directory + "/" + p.get_category())));
-				_filenames.add(p.get_category().toString());
+			if (!_files.containsKey(p.getCategory().toString())) {
+				_files.put(p.getCategory().toString(), new FileStorage(new File(_directory + "/" + p.getCategory())));
+				_filenames.add(p.getCategory().toString());
 			}
-			_files.get(p.get_category().toString()).store(p.get_name(), p);
+			_files.get(p.getCategory().toString()).store(p.getName(), p);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
@@ -80,35 +80,50 @@ public class ListDaoImpl implements ListDao {
 				
 			}
 		}
+		
 		return new FoodContainerTransfer(foodList, categories);
 	}
 
 	@Override
 	public boolean deleteProduct(ProductTransfer p) {
-		if (!_files.containsKey(p.get_category().toString())) return false;
+		if (!_files.containsKey(p.getCategory().toString())) return false;
 		try {
-			ProductTransfer k = _files.get(p.get_category().toString()).get(p.get_name());
-			if (k.get_quantity() > p.get_quantity()) {
-				changeAmount(p, k.get_quantity() - p.get_quantity());
+			ProductTransfer k = _files.get(p.getCategory().toString()).get(p.getName());
+			if (k.getQuantity() > p.getQuantity()) {
+				changeAmount(p, k.getQuantity() - p.getQuantity());
 				return true;
 			}
-			_files.get(p.get_category().toString()).remove(p.get_name());
-			_filenames.remove(p.get_category().toString());
-			new File(_directory + "/" + p.get_category().toString()).delete();
+			_files.get(p.getCategory().toString()).remove(p.getName());
+			_filenames.remove(p.getCategory().toString());
+			new File(_directory + "/" + p.getCategory().toString()).delete();
 		} catch (IOException e) {
 			return false;
 		}
 		return true;
 	}
 
+	/**
+	 * Changed the amount of the desired product in the storage system
+	 */
 	@Override
 	public boolean changeAmount(ProductTransfer p, int amount) {
-		if (!_files.containsKey(p.get_category().toString())) return false;
+		
+		// if _files doesn't contain the corresponding category
+		if (!_files.containsKey(p.getCategory().toString())) 
+			return false;
+		
 		try {
-			ProductTransfer k = _files.get(p.get_category().toString()).get(p.get_name());
-			k.set_quantity(amount);
-			_files.get(p.get_category().toString()).store(p.get_name(), k);
-		} catch (IOException e) {
+			
+			// try to get the actual parameters of the selected product
+			ProductTransfer k = _files.get(p.getCategory().toString()).get(p.getName());
+			
+			// set the new parameters for the product (eventual NullPointerException is thrown)
+			ProductTransfer r = new ProductTransfer(k.getName(), amount, k.getCategory());
+			
+			// replace the product
+			_files.get(p.getCategory().toString()).store(p.getName(), r);
+			
+		} catch (IOException | NullPointerException e) {
 			return false;
 		}
 		return true;

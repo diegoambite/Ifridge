@@ -55,7 +55,7 @@ public class FridgeView extends JPanel implements ListsObserver {
 	@Override
 	public void onRemove(ProductTransfer p) {
 		for (TableView t : _fridge) {
-			if (t.getCategory().equals(p.get_category())) {
+			if (t.getCategory().equals(p.getCategory())) {
 				t.onRemove(p);
 			}
 		}
@@ -63,16 +63,16 @@ public class FridgeView extends JPanel implements ListsObserver {
 	}
 
 	public void onAdd(ProductTransfer p) {
-		if (!_categories.contains(p.get_category())) {
-			_categories.add(p.get_category());
-			TableView table = new TableView(p.get_category());
+		if (!_categories.contains(p.getCategory())) {
+			_categories.add(p.getCategory());
+			TableView table = new TableView(p.getCategory());
 			_fridge.add(table);
 			this.add(table);
 			table.onAdd(p);
 			return;
 		}
 		for (TableView t : _fridge) {
-			if (t.getCategory().equals(p.get_category())) {
+			if (t.getCategory().equals(p.getCategory())) {
 				
 				t.onAdd(p);
 			}
