@@ -1,11 +1,14 @@
 package is.ucm.model.transfer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import is.ucm.model.business.Category;
 
+/**
+ * Value object that carries all the information about a food container (fridge or shop list). 
+ * @author iFridge team
+ */
 public class FoodContainerTransfer {
 	
 	
@@ -19,11 +22,9 @@ public class FoodContainerTransfer {
 	
 	// CONSTRUCTOR
 	
-	public FoodContainerTransfer() {
-		
-		_foodList = new HashMap<Category, List<ProductTransfer>>();
-		_categories = new ArrayList<Category>();
-
+	public FoodContainerTransfer(HashMap<Category, List<ProductTransfer>> _foodList, List<Category> _categories) {
+		this._foodList = _foodList;
+		this._categories = _categories;
 	}
 
 	
@@ -37,71 +38,4 @@ public class FoodContainerTransfer {
 		return _categories;
 	}
 
-	
-	// FUNCTIONAL METHODS
-	
-	/**
-	 * Adds a product to the food list
-	 * @param pro
-	 */
-	public void addNewProduct(ProductTransfer pro) {
-		if (!_foodList.containsKey(pro.get_category())) {
-			_foodList.put(pro.get_category(), new ArrayList<ProductTransfer>());
-			_categories.add(pro.get_category());
-		}
-		_foodList.get(pro.get_category()).add(pro);
-	}
-	
-	/**
-	 * Removes a product from the food list, or decreases the quantity counter by one
-	 * @param pro
-	 */
-	public void removeProduct(ProductTransfer pro){
-		 
-		// identify the collision list of the product
-		List<ProductTransfer> collision_list = _foodList.get(pro.get_category());
-		if(collision_list == null) return;
-		
-		// identify its index inside the collision list
-		int index = getIndex(pro);
-		if(index == -1) return;
-		
-		// obtain a reference to the product inside the food list
-		ProductTransfer p = collision_list.get(index);
-		if(p == null) return;
-		
-		if (p.get_quantity() > 1) {
-			p.set_quantity(p.get_quantity() - 1);
-			collision_list.set(index, p);
-		}
-		else {
-			collision_list.remove(index);
-			if (_foodList.get(pro.get_category()).isEmpty()) {
-				_foodList.remove(pro.get_category());
-				_categories.remove(pro.get_category());
-			}
-		}
-	}
-
-	public void addList(List<ProductTransfer> p, Category c) {
-		_foodList.put(c, p);
-		_categories.add(c);
-	}
-	
-	/**
-	 * Returns the index of the passed product in the collision list of the hashtable
-	 * @param pro
-	 * @return
-	 */
-	public int getIndex(ProductTransfer pro) {
-		int index = -1;
-		for(int i = 0; i < _foodList.get(pro.get_category()).size(); ++i) {
-			if(_foodList.get(pro.get_category()).get(i).get_name().equals(pro.get_name())) {
-				index =  i;
-				break;
-			}
-		}
-		return index;
-	}
-	
 }
