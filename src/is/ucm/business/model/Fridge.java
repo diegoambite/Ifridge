@@ -9,9 +9,7 @@ import is.ucm.integration.list.ListDaoImpl;
 public class Fridge implements Observable<ListsObserver> {
 
 	private List<ListsObserver> _obs;
-	
-	private FoodContainerTransfer _food;
-	
+		
 	private ListDao _dao;
 	
 	

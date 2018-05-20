@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.List;
 
 import is.ucm.business.model.user.UserTransfer;
+import is.ucm.exceptions.UserNotFoundException;
 import is.ucm.util.ini.Ini;
 import is.ucm.util.ini.IniSection;
 import is.ucm.util.password.Password;
-import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class UserDaoImpl implements UserDao {
 

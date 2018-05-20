@@ -7,20 +7,23 @@ import is.ucm.business.model.FoodContainerTransfer;
 import is.ucm.business.model.ListsObserver;
 import is.ucm.business.model.ProductTransfer;
 import is.ucm.business.model.appservice.AppService;
-import is.ucm.util.userdao.exceptions.UserNotFoundException;
+import is.ucm.exceptions.UserNotFoundException;
 
 public class Controller {
-	
-	private String user, password, mail, file;
-	
-	private int age;
+
 	
 	private AppService _appservice;
+	
+	
+	// CONSTRUCTOR
 	
 	public Controller() {
 		_appservice = new AppService();
 		
 	}
+	
+	
+	// COMMANDS
 	
 	public boolean registerUser(String username, String password) {
 		return !_appservice.registerUser(username, password).isEmpty();
@@ -32,12 +35,10 @@ public class Controller {
 
 	public void addFridgeObserver(ListsObserver c) {
 		_appservice.addFridgeObserver(c);
-		
 	}
 
 	public void addShopObserver(ListsObserver c) {
 		_appservice.addShopObserver(c);
-		
 	}
 
 	public FoodContainerTransfer loadData(String id) {
@@ -46,9 +47,6 @@ public class Controller {
 
 	public void deleteObjects(List<ProductTransfer> selected, String string) {
 		_appservice.deleteObjects(selected, string);
-		
 	}
-
 	
-
 }

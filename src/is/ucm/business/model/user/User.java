@@ -2,22 +2,40 @@ package is.ucm.business.model.user;
 
 import java.io.IOException;
 
+import is.ucm.exceptions.UserNotFoundException;
 import is.ucm.integration.user.UserDao;
 import is.ucm.integration.user.UserDaoImpl;
 import is.ucm.util.password.Password;
-import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class User {
 	
+	/**
+	 * User DTO, to retrieve all the information of a user from the storage system
+	 */
 	private UserTransfer _user;
 
+	/**
+	 * User DAO, to interact with the storage system
+	 */
 	private UserDao _dao;
+	
+	
+	// CONSTRUCTOR
 	
 	public User() {
 		_dao = new UserDaoImpl();
 		_user = new UserTransfer();
 	}
 	
+	
+	// USER'S ACTIONS
+	
+	/**
+	 * Logs a user into the system
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public UserTransfer logIn(String username, Password password) {
 		try {
 			_user = _dao.getUser(username);
@@ -30,6 +48,12 @@ public class User {
 		return _user;
 	}
 	
+	/**
+	 * Registers a user into the system
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public UserTransfer registerUser(String username, Password password) {
 		try {
 			_user = _dao.setNewUser(username, password);

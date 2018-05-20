@@ -10,9 +10,7 @@ public class ShopList implements Observable<ListsObserver> {
 	
 	
 	private List<ListsObserver> _obs;
-	
-	private FoodContainerTransfer _food;
-	
+		
 	private ListDao _dao;
 	
 	

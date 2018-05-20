@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import is.ucm.exceptions.UserNotFoundException;
 import is.ucm.presentation.controller.Controller;
-import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 /**
  * Access View for the application. It's the one in charge of the login.

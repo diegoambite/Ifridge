@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.List;
 
 import is.ucm.business.model.user.UserTransfer;
+import is.ucm.exceptions.UserNotFoundException;
 import is.ucm.util.password.Password;
-import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public interface UserDao {
 	public UserTransfer getUser(String username) throws IOException, UserNotFoundException;
