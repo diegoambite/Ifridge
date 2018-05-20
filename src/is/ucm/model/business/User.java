@@ -40,7 +40,7 @@ public class User {
 	public UserTransfer logIn(String username, Password password) {
 		try {
 			_user = _dao.getUser(username);
-			if (!password.generate().equals(_user.get_password())) {
+			if (!password.generate().equals(_user.getPassword())) {
 				_user = new UserTransfer();
 			}
 		} catch (IOException | UserNotFoundException e) {

@@ -28,15 +28,15 @@ public class ProductTransfer implements Serializable {
 	
 	// GETTERS AND SETTERS
 	
-	public String get_name() {
+	public String getName() {
 		return _name;
 	}
 		
-	public int get_quantity() {
+	public int getQuantity() {
 		return _quantity;
 	}
 	
-	public Category get_category() {
+	public Category getCategory() {
 		return _category;
 	}
 	
