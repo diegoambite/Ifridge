@@ -7,7 +7,7 @@ import is.ucm.business.model.FoodContainerTransfer;
 import is.ucm.business.model.ListsObserver;
 import is.ucm.business.model.ProductTransfer;
 import is.ucm.business.model.appservice.AppService;
-import is.ucm.util.userdao.exceptions.UserNotFoundException;
+import is.ucm.exceptions.UserNotFoundException;
 
 public class Controller {
 

@@ -2,10 +2,10 @@ package is.ucm.business.model.user;
 
 import java.io.IOException;
 
+import is.ucm.exceptions.UserNotFoundException;
 import is.ucm.integration.user.UserDao;
 import is.ucm.integration.user.UserDaoImpl;
 import is.ucm.util.password.Password;
-import is.ucm.util.userdao.exceptions.UserNotFoundException;
 
 public class User {
 	
