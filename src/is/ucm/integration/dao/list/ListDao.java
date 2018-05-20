@@ -1,7 +1,7 @@
 package is.ucm.integration.dao.list;
 
-import is.ucm.business.model.transfer.FoodContainerTransfer;
-import is.ucm.business.model.transfer.ProductTransfer;
+import is.ucm.model.transfer.FoodContainerTransfer;
+import is.ucm.model.transfer.ProductTransfer;
 
 public interface ListDao {
 	public ProductTransfer getProduct(String name);

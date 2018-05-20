@@ -1,8 +1,8 @@
-package is.ucm.business.model.transfer;
+package is.ucm.model.transfer;
 
 import java.io.Serializable;
 
-import is.ucm.business.model.Category;
+import is.ucm.model.business.Category;
 
 public class ProductTransfer implements Serializable {
 
@@ -22,7 +22,7 @@ public class ProductTransfer implements Serializable {
 	
 	// CONSTRUCTOR
 	
-	public ProductTransfer(String name, int quantity, is.ucm.business.model.Category category) {
+	public ProductTransfer(String name, int quantity, is.ucm.model.business.Category category) {
 		_name = name;
 		_quantity = quantity;
 		_category = category;

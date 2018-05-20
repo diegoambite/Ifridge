@@ -1,11 +1,11 @@
-package is.ucm.business.model;
+package is.ucm.model.business;
 
 import java.io.IOException;
 
-import is.ucm.business.model.transfer.UserTransfer;
 import is.ucm.exceptions.UserNotFoundException;
 import is.ucm.integration.dao.user.UserDao;
 import is.ucm.integration.dao.user.UserDaoImpl;
+import is.ucm.model.transfer.UserTransfer;
 import is.ucm.util.password.Password;
 
 public class User {

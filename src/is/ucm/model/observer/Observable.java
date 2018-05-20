@@ -1,4 +1,4 @@
-package is.ucm.business.model.observer;
+package is.ucm.model.observer;
 
 public interface Observable<T>{
 	
