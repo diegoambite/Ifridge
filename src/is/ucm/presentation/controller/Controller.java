@@ -55,4 +55,18 @@ public class Controller {
 		
 	}
 	
+	public void deleteObject(ProductTransfer productTransfer, String string) {
+		_appservice.deleteObject(productTransfer, string);
+		
+	}
+
+
+	public void moveObjects(List<ProductTransfer> selected) {
+		for (ProductTransfer t : selected) {
+			_appservice.addObject(t, "fridge");
+			_appservice.deleteObject(t, "shopList");
+		}
+		
+	}
+	
 }

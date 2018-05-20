@@ -225,7 +225,7 @@ public class FileStorage {
 	 *            The Object.
 	 * @return true if the object is stored
 	 */
-	public boolean hasObject(Object o) {
+	public boolean hasObject(ProductTransfer o) {
 		return storageMap.containsValue(o);
 	}
 

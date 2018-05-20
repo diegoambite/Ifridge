@@ -91,4 +91,17 @@ public class AppService {
 		
 	}
 
+	public void deleteObject(ProductTransfer productTransfer, String string) {
+		switch(string) {
+		case "shopList":
+			_shopList.deleteObject(productTransfer);
+			break;
+		case "fridge":
+			_fridge.deleteObject(productTransfer);
+			break;
+		}
+		return;
+		
+	}
+
 }

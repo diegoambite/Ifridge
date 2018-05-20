@@ -82,7 +82,12 @@ public class FridgeView extends JPanel implements ListsObserver {
 
 	@Override
 	public void onEdit(ProductTransfer p) {
-		// TODO Auto-generated method stub
+		for (TableView t : _fridge) {
+			if (t.getCategory().equals(p.get_category())) {
+				
+				t.onEdit(p);
+			}
+		}
 		
 	}
 

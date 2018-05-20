@@ -74,6 +74,13 @@ public class ShopList implements Observable<ListsObserver> {
 		}
 		
 	}
+
+
+	public void deleteObject(ProductTransfer productTransfer) {
+		if (_dao.deleteProduct(productTransfer)) {
+			NotifyRemove(productTransfer);
+		}
+	}
 }
 
 

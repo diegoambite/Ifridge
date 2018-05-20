@@ -174,6 +174,11 @@ public class MainView extends JFrame {
 			_controller.deleteObjects(this._shopView.getSelected(), "shopList");	
 	}
 
+	public void moveObjects() {
+		_controller.moveObjects(_shopView.getSelected());
+		
+	}
+
 	
 
 }

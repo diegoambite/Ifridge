@@ -70,5 +70,22 @@ public class Fridge implements Observable<ListsObserver> {
 		if (_dao.saveProduct(productTransfer)) {
 			NotifyAdd(productTransfer);
 		}
+		else
+			NotifyEdit(productTransfer);
+	}
+
+
+	private void NotifyEdit(ProductTransfer productTransfer) {
+		for (ListsObserver o : _obs)
+			o.onEdit(productTransfer);
+		
+	}
+
+
+	public void deleteObject(ProductTransfer productTransfer) {
+		if (_dao.deleteProduct(productTransfer)) {
+			NotifyRemove(productTransfer);
+		}
+		
 	}
 }

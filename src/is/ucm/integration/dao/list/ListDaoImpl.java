@@ -54,14 +54,21 @@ public class ListDaoImpl implements ListDao {
 	public boolean saveProduct(ProductTransfer p) {
 		try {
 			if (!_files.containsKey(p.get_category().toString())) {
+				
+				
 				_files.put(p.get_category().toString(), new FileStorage(new File(_directory + "/" + p.get_category())));
 				_filenames.add(p.get_category().toString());
 			}
+			if (_files.get(p.get_category().toString()).hasKey(p.get_name())) {
+				ProductTransfer k = _files.get(p.get_category().toString()).get(p.get_name());
+				changeAmount(p, k.get_quantity() + p.get_quantity());
+				return false;
+			}
 			_files.get(p.get_category().toString()).store(p.get_name(), p);
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return true;
 	}

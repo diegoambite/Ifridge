@@ -149,6 +149,11 @@ public class TableView extends JPanel {
 	}
 
 	public void onEdit(ProductTransfer p) {
-		
+		for (ProductTransfer t : _list) {
+			if (t.get_name().equals(p.get_name())) {
+				t.set_quantity(p.get_quantity() + t.get_quantity());
+			}
+		}
+		_fridgeTableModel.refresh();
 	}
 }

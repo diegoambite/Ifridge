@@ -39,4 +39,8 @@ public class Category implements Serializable {
 		return this.toString().equals(c.toString());
 	}
 	
+	public boolean equals(Category c) {
+		return this.toString().equals(c.toString());
+	}
+	
 }

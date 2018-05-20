@@ -100,6 +100,9 @@ public class Toolbar extends JToolBar implements ActionListener{
 		case "DELETE":
 			_main.deleteObjects();
 			break;
+		case "MOVE":
+			_main.moveObjects();
+			break;
 		}
 	
 	}
