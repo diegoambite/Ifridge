@@ -1,4 +1,4 @@
-package is.ucm.model.categories;
+package is.ucm.business.model.categories;
 
 import java.io.Serializable;
 

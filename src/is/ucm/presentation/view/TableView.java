@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
 import is.ucm.business.model.ProductTransfer;
-import is.ucm.model.categories.Category;
+import is.ucm.business.model.categories.Category;
 
 @SuppressWarnings("serial")
 public class TableView extends JPanel {

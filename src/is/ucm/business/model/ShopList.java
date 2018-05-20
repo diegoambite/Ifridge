@@ -3,9 +3,9 @@ package is.ucm.business.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import is.ucm.business.model.categories.Category;
 import is.ucm.integration.list.ListDao;
 import is.ucm.integration.list.ListDaoImpl;
-import is.ucm.model.categories.Category;
 
 public class ShopList implements Observable<ListsObserver> {
 		

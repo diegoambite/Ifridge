@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import is.ucm.business.model.FoodContainerTransfer;
 import is.ucm.business.model.ListsObserver;
 import is.ucm.business.model.ProductTransfer;
-import is.ucm.model.categories.Category;
+import is.ucm.business.model.categories.Category;
 import is.ucm.presentation.controller.Controller;
 
 @SuppressWarnings("serial")

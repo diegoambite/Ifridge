@@ -8,7 +8,7 @@ import java.util.List;
 
 import is.ucm.business.model.FoodContainerTransfer;
 import is.ucm.business.model.ProductTransfer;
-import is.ucm.model.categories.Category;
+import is.ucm.business.model.categories.Category;
 import is.ucm.util.filestorage.FileStorage;
 
 public class ListDaoImpl implements ListDao {
