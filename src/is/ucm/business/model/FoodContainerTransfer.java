@@ -27,7 +27,6 @@ public class FoodContainerTransfer {
 	
 	// GETTERS
 	
-	
 	public List<ProductTransfer> getList(Category c) {
 		return _foodList.get(c);
 	}

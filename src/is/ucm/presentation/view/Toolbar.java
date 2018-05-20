@@ -15,12 +15,17 @@ import is.ucm.presentation.controller.Controller;
 @SuppressWarnings("serial")
 public class Toolbar extends JToolBar implements ActionListener{
 	
+	
 	private JButton _fridgeView, _buyView, _close, _delete;
 	
 	private MainView _main;
+	
 	private Controller _controller;
 
-	public Toolbar(MainView main, Controller controller){//habra que meterle el controler
+	
+	// CONSTRUCTOR
+	
+	public Toolbar(MainView main, Controller controller){
 		super();	
 		_main = main;
 		_controller = controller;
@@ -44,6 +49,9 @@ public class Toolbar extends JToolBar implements ActionListener{
 		addToolbarButton(_close, "EXIT", "Clear Text", "resources/icons/exit.png");
 	}
 	
+	
+	// GRAPHIC METHODS
+	
 	/**
 	 * Shortcut method to add a button to the toolbar, passing the correct parameters
 	 */
@@ -65,6 +73,9 @@ public class Toolbar extends JToolBar implements ActionListener{
 		return Toolkit.getDefaultToolkit().createImage(path);
 	}
 
+	/**
+	 * Handles the click on the toolbar buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

@@ -25,12 +25,25 @@ public class ShopView extends JPanel implements ListsObserver {
 
 	private TableView _table;
 	
+	
+	// CONSTRUCTOR
+	
 	public ShopView(Controller controller) {
 		_controller = controller;
 		_shop = new ArrayList<ShopTableView>();
 		_controller.addShopObserver(this);
 		initGUI();
 	}
+	
+	
+	// GETTERS AND SETTERS
+	
+	public List<ProductTransfer> getSelected() {
+		return _table.getSelected();
+	}
+
+	
+	// GRAPHIC METHODS
 	
 	/**
 	 * Method that initializes the GUI for the ShopView
@@ -51,26 +64,22 @@ public class ShopView extends JPanel implements ListsObserver {
 		
 	}
 
+	
+	// EVENT OBSERVER METHODS
+	
 	@Override
 	public void onRemove(ProductTransfer p) {
 		_table.onRemove(p);
-		
 	}
 
 	@Override
 	public void onAdd(ProductTransfer p) {
 		_table.onAdd(p);
-		
 	}
 
 	@Override
 	public void onEdit(ProductTransfer p) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	public List<ProductTransfer> getSelected() {
-		return _table.getSelected();
 	}
 
 }
