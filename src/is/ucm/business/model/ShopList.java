@@ -7,12 +7,16 @@ import is.ucm.integration.list.ListDao;
 import is.ucm.integration.list.ListDaoImpl;
 
 public class ShopList implements Observable<ListsObserver> {
-		
-private List<ListsObserver> _obs;
+	
+	
+	private List<ListsObserver> _obs;
 	
 	private FoodContainerTransfer _food;
 	
 	private ListDao _dao;
+	
+	
+	// CONSTRUCTOR
 	
 	public ShopList() {
 		_obs = new ArrayList<ListsObserver>();
@@ -21,7 +25,6 @@ private List<ListsObserver> _obs;
 		_dao.saveProduct(new ProductTransfer("tomatoe", 8, new Category("Vegetables")));
 	}
 	
-
 	
 	// OBSERVER MANAGEMENT FUNCTIONS
 	
@@ -45,13 +48,12 @@ private List<ListsObserver> _obs;
 			o.onRemove(p);
 	}
 
-
-
+	
+	// FUNCTIONAL METHODS
+	
 	public FoodContainerTransfer loadData() {
 		return _dao.getAllProducts();
 	}
-
-
 
 	public void deleteObjects(List<ProductTransfer> selected) {
 		for (ProductTransfer t : selected) {

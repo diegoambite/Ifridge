@@ -17,7 +17,6 @@ public class Controller {
 	
 	private AppService _appservice;
 	
-	
 	public Controller() {
 		_appservice = new AppService();
 		

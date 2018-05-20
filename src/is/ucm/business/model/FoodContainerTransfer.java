@@ -7,13 +7,15 @@ import java.util.List;
 public class FoodContainerTransfer {
 	
 	
-	
-	
 	/**
 	 * Products are arranged in a hashtable, where each collision list is represented by a category
 	 */
 	private HashMap<Category, List<ProductTransfer>> _foodList;
+	
 	private List<Category> _categories;
+	
+	
+	// CONSTRUCTOR
 	
 	public FoodContainerTransfer() {
 		
@@ -22,6 +24,21 @@ public class FoodContainerTransfer {
 
 	}
 
+	
+	// GETTERS
+	
+	
+	public List<ProductTransfer> getList(Category c) {
+		return _foodList.get(c);
+	}
+	
+	public List<Category> getCategories() {
+		return _categories;
+	}
+
+	
+	// FUNCTIONAL METHODS
+	
 	/**
 	 * Adds a product to the food list
 	 * @param pro
@@ -64,20 +81,11 @@ public class FoodContainerTransfer {
 			}
 		}
 	}
-	
-	public List<ProductTransfer> getList(Category c) {
-		return _foodList.get(c);
-	}
-	
-	public List<Category> getCategories() {
-		return _categories;
-	}
-	
+
 	public void addList(List<ProductTransfer> p, Category c) {
 		_foodList.put(c, p);
 		_categories.add(c);
 	}
-	
 	
 	/**
 	 * Returns the index of the passed product in the collision list of the hashtable

@@ -4,11 +4,10 @@ import java.io.Serializable;
 
 public class ProductTransfer implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
+	
 	/**
 	 * Name of the product (Unique).
 	 */
@@ -18,6 +17,9 @@ public class ProductTransfer implements Serializable {
 	
 	private Category _category;
 
+	
+	// CONSTRUCTOR
+	
 	public ProductTransfer(String name, int quantity, is.ucm.business.model.Category category) {
 		_name = name;
 		_quantity = quantity;

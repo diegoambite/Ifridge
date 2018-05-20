@@ -26,10 +26,22 @@ public class AppService {
 		_user = new User();
 	}
 	
+	/**
+	 * Logs a user into the system
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public UserTransfer logInUser(String username, String password) {
 		return _user.logIn(username, new HashPassword(new BasePassword(password)));
 	}
 	
+	/**
+	 * Registers a new user into the system
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public UserTransfer registerUser(String username, String password) {
 		return _user.registerUser(username, new HashPassword(new BasePassword(password)));
 	}
@@ -47,12 +59,10 @@ public class AppService {
 
 	public void addFridgeObserver(ListsObserver c) {
 		_fridge.addObserver(c);
-		
 	}
 
 	public void addShopObserver(ListsObserver c) {
 		_shopList.addObserver(c);
-		
 	}
 
 	public void deleteObjects(List<ProductTransfer> selected, String string) {

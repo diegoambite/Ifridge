@@ -14,6 +14,9 @@ public class Fridge implements Observable<ListsObserver> {
 	
 	private ListDao _dao;
 	
+	
+	// CONSTRUCTOR
+	
 	public Fridge() {
 		_obs = new ArrayList<ListsObserver>();
 		_dao = new ListDaoImpl("resources/fridge/"); //change the directory
@@ -21,7 +24,6 @@ public class Fridge implements Observable<ListsObserver> {
 	}
 	
 
-	
 	// OBSERVER MANAGEMENT FUNCTIONS
 	
 	@Override
@@ -45,12 +47,11 @@ public class Fridge implements Observable<ListsObserver> {
 	}
 
 
-
+	// FUNCTIONAL METHODS
+	
 	public FoodContainerTransfer loadData() {
 		return _dao.getAllProducts();
 	}
-
-
 
 	public void deleteObjects(List<ProductTransfer> selected) {
 		for (ProductTransfer t : selected) {
