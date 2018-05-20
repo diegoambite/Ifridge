@@ -11,6 +11,10 @@ import is.ucm.model.transfer.FoodContainerTransfer;
 import is.ucm.model.transfer.ProductTransfer;
 import is.ucm.util.filestorage.FileStorage;
 
+/**
+ * DAO class, that operates with the food storage systems.
+ * @author iFridge team
+ */
 public class ListDaoImpl implements ListDao {
 	
 	private String _directory;
@@ -19,6 +23,8 @@ public class ListDaoImpl implements ListDao {
 	
 	private List<String> _filenames;
 
+	
+	// CONSTRUCTOR
 	
 	public ListDaoImpl(String string) {
 		_directory = string;
@@ -38,6 +44,7 @@ public class ListDaoImpl implements ListDao {
 		}
 	}
 
+	
 	@Override
 	public ProductTransfer getProduct(String name) {
 		return null;
@@ -61,16 +68,19 @@ public class ListDaoImpl implements ListDao {
 
 	@Override
 	public FoodContainerTransfer getAllProducts() {
-		FoodContainerTransfer transfer = new FoodContainerTransfer();
+		HashMap<Category, List<ProductTransfer>> foodList = new HashMap<>();
+		List<Category> categories = new ArrayList<>();
+		
 		for (String f : _filenames) {
 			Category c = new Category(f);
 			try {
-				transfer.addList(_files.get(f).getAllAsArrayList(), c);
+				foodList.put(c, _files.get(f).getAllAsArrayList());
+				categories.add(c);
 			} catch (NullPointerException e) {
 				
 			}
 		}
-		return transfer;
+		return new FoodContainerTransfer(foodList, categories);
 	}
 
 	@Override
