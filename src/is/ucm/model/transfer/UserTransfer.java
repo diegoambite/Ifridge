@@ -31,11 +31,11 @@ public class UserTransfer {
 	
 	// GETTERS
 	
-	public String get_name() {
+	public String getName() {
 		return _name;
 	}
 	
-	public String get_password() {
+	public String getPassword() {
 		return _password;
 	}
 		

@@ -109,6 +109,7 @@ public class MainView extends JFrame {
 		
 		
 		this.pack();
+		this.setLocationRelativeTo(null);
 	}
 	
 	/**

@@ -47,8 +47,8 @@ public class TableView extends JPanel {
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			switch(columnIndex) {
-				case 0:	return _list.get(rowIndex).get_name();
-				case 1:	return _list.get(rowIndex).get_quantity();
+				case 0:	return _list.get(rowIndex).getName();
+				case 1:	return _list.get(rowIndex).getQuantity();
 				default: return null;
 			}
 		}
